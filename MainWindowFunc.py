@@ -16,6 +16,8 @@ class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionSaveAs.triggered.connect(self.saveAs)
         # Save Image action
         self.actionSave.triggered.connect(self.save)
+        # Exit action
+        self.actionExit.triggered.connect(self.exit)
 
     """ FILE ACTION """
     # Open Image Method
@@ -56,6 +58,26 @@ class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             cv.imwrite(self.save_img_path, self.img_editing)
             self.saved = True
+    # Exit Action method
+
+    def exit(self):
+        if self.saved:
+            self.close()
+        else:
+            self.imageNotSavedMsg()
+    # Show message if the image has not been saved
+
+    def imageNotSavedMsg(self):
+        msg = QtWidgets.QMessageBox()
+        ans = msg.question(self, "Save Image",
+                           "Image has not been saved.\nAre you sure that you want exit ? ", msg.Close | msg.Save | msg.Cancel)
+
+        if ans == msg.Save:
+            self.saveAs()
+        elif ans == msg.Close:
+            self.close()
+        else:
+            pass
 
 
 if __name__ == "__main__":
