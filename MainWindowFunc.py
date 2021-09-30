@@ -4,7 +4,7 @@ from MainWindowUi import Ui_MainWindow
 
 
 class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
-    saved = False
+    saved, image_path = False, ''
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -40,6 +40,17 @@ class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
 
             self.actionSave.setDisabled(False)
             self.actionSaveAs.setDisabled(False)
+            self.menuImage_2.setDisabled(False)
+            self.menuTools.setDisabled(False)
+            self.adjustmentBtn.setDisabled(False)
+            self.HueSatBtn.setDisabled(False)
+            self.cropBtn.setDisabled(False)
+            self.TextBtn.setDisabled(False)
+            self.resizeBtn.setDisabled(False)
+            self.magicToolBtn.setDisabled(False)
+            self.colorPickerBtn.setDisabled(False)
+            self.colorCorrectionBtn.setDisabled(False)
+
     # Save Action Method
 
     def save(self):
@@ -61,10 +72,15 @@ class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
     # Exit Action method
 
     def exit(self):
-        if self.saved:
+        # If no image found
+        if self.image_path == '':
             self.close()
         else:
-            self.imageNotSavedMsg()
+            # If image found
+            if self.saved:
+                self.close()
+            else:
+                self.imageNotSavedMsg()
     # Show message if the image has not been saved
 
     def imageNotSavedMsg(self):
