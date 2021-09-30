@@ -38,18 +38,8 @@ class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
             self.img_original = cv.imread(self.image_path)
             self.img_editing = self.img_original
 
-            self.actionSave.setDisabled(False)
-            self.actionSaveAs.setDisabled(False)
-            self.menuImage_2.setDisabled(False)
-            self.menuTools.setDisabled(False)
-            self.adjustmentBtn.setDisabled(False)
-            self.HueSatBtn.setDisabled(False)
-            self.cropBtn.setDisabled(False)
-            self.TextBtn.setDisabled(False)
-            self.resizeBtn.setDisabled(False)
-            self.magicToolBtn.setDisabled(False)
-            self.colorPickerBtn.setDisabled(False)
-            self.colorCorrectionBtn.setDisabled(False)
+            # TO activate all desabled buttons
+            self.ActivateAllFunctions()
 
     # Save Action Method
 
@@ -94,6 +84,22 @@ class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
             self.close()
         else:
             pass
+
+    # TO activate all desabled buttons
+    def ActivateAllFunctions(self):
+        self.actionSave.setDisabled(False)
+        self.actionSaveAs.setDisabled(False)
+        self.menuImage_2.setDisabled(False)
+        self.menuTools.setDisabled(False)
+        self.adjustmentBtn.setDisabled(False)
+        self.HueSatBtn.setDisabled(False)
+        self.cropBtn.setDisabled(False)
+        self.TextBtn.setDisabled(False)
+        self.resizeBtn.setDisabled(False)
+        self.magicToolBtn.setDisabled(False)
+        self.colorPickerBtn.setDisabled(False)
+        self.colorCorrectionBtn.setDisabled(False)
+        self.toolsPanel.setCursor(QtGui.QCursor(QtGui.Qt.ArrowCursor))
 
 
 if __name__ == "__main__":

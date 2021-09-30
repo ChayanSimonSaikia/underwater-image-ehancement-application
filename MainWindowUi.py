@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'v2RXaTwc.ui'
+## Form generated from reading UI file 'v2leqzsS.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -18,8 +18,14 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(722, 600)
+        font = QFont()
+        font.setFamily(u"Nunito")
+        MainWindow.setFont(font)
+        MainWindow.setLayoutDirection(Qt.LeftToRight)
         MainWindow.setStyleSheet(u"background-color: rgb(46, 46, 58);\n"
 "color: rgb(224, 224, 224);")
+        MainWindow.setTabShape(QTabWidget.Rounded)
+        MainWindow.setDockOptions(QMainWindow.AllowTabbedDocks|QMainWindow.AnimatedDocks)
         self.actionOpen = QAction(MainWindow)
         self.actionOpen.setObjectName(u"actionOpen")
         self.actionSave = QAction(MainWindow)
@@ -103,7 +109,7 @@ class Ui_MainWindow(object):
         self.ImageScrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 610, 517))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 630, 517))
         self.horizontalLayout_3 = QHBoxLayout(self.scrollAreaWidgetContents_2)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.imageMainWindowLabel = QLabel(self.scrollAreaWidgetContents_2)
@@ -127,13 +133,13 @@ class Ui_MainWindow(object):
         self.menubar.setEnabled(True)
         self.menubar.setGeometry(QRect(0, 0, 722, 25))
         self.menubar.setMinimumSize(QSize(0, 25))
-        font = QFont()
-        font.setFamily(u"Nunito")
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        font.setStyleStrategy(QFont.PreferAntialias)
-        self.menubar.setFont(font)
+        font1 = QFont()
+        font1.setFamily(u"Nunito")
+        font1.setPointSize(10)
+        font1.setBold(True)
+        font1.setWeight(75)
+        font1.setStyleStrategy(QFont.PreferAntialias)
+        self.menubar.setFont(font1)
         self.menubar.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.menubar.setAcceptDrops(True)
         self.menubar.setLayoutDirection(Qt.LeftToRight)
@@ -167,21 +173,21 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolsPanel.sizePolicy().hasHeightForWidth())
         self.toolsPanel.setSizePolicy(sizePolicy)
-        self.toolsPanel.setMinimumSize(QSize(70, 300))
+        self.toolsPanel.setMinimumSize(QSize(50, 300))
         self.toolsPanel.setMaximumSize(QSize(80, 524287))
-        font1 = QFont()
-        font1.setFamily(u"Nunito")
-        font1.setPointSize(8)
-        font1.setBold(True)
-        font1.setItalic(False)
-        font1.setUnderline(False)
-        font1.setWeight(75)
-        font1.setKerning(True)
-        font1.setStyleStrategy(QFont.PreferAntialias)
-        self.toolsPanel.setFont(font1)
-        self.toolsPanel.setCursor(QCursor(Qt.SizeAllCursor))
+        font2 = QFont()
+        font2.setFamily(u"Nunito")
+        font2.setPointSize(7)
+        font2.setBold(True)
+        font2.setItalic(False)
+        font2.setUnderline(False)
+        font2.setWeight(75)
+        font2.setKerning(True)
+        font2.setStyleStrategy(QFont.PreferAntialias)
+        self.toolsPanel.setFont(font2)
+        self.toolsPanel.setCursor(QCursor(Qt.ForbiddenCursor))
         self.toolsPanel.setLayoutDirection(Qt.LeftToRight)
-        self.toolsPanel.setStyleSheet(u"background-color: rgb(5, 146, 204);")
+        self.toolsPanel.setStyleSheet(u"background-color: rgb(60, 60, 75);")
         self.toolsPanel.setInputMethodHints(Qt.ImhNone)
         self.toolsPanel.setFloating(False)
         self.toolsPanel.setFeatures(QDockWidget.DockWidgetMovable)
@@ -190,7 +196,7 @@ class Ui_MainWindow(object):
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
         self.gridLayoutWidget = QWidget(self.dockWidgetContents)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(20, 10, 30, 291))
+        self.gridLayoutWidget.setGeometry(QRect(10, 10, 30, 291))
         self.verticalLayout = QVBoxLayout(self.gridLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -198,9 +204,12 @@ class Ui_MainWindow(object):
         self.TextBtn.setObjectName(u"TextBtn")
         self.TextBtn.setEnabled(False)
         self.TextBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.TextBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
+"color: rgb(28, 28, 28);")
         icon = QIcon()
         icon.addFile(u"../Image_editor/Icons/font-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.TextBtn.setIcon(icon)
+        self.TextBtn.setIconSize(QSize(14, 14))
         self.TextBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.TextBtn)
@@ -212,11 +221,13 @@ class Ui_MainWindow(object):
         self.adjustmentBtn.setMouseTracking(False)
         self.adjustmentBtn.setAcceptDrops(False)
         self.adjustmentBtn.setToolTipDuration(-1)
-        self.adjustmentBtn.setStyleSheet(u"")
+        self.adjustmentBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
+"color: rgb(28, 28, 28);")
         self.adjustmentBtn.setInputMethodHints(Qt.ImhNone)
         icon1 = QIcon()
         icon1.addFile(u"../Image_editor/Icons/adjust-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.adjustmentBtn.setIcon(icon1)
+        self.adjustmentBtn.setIconSize(QSize(14, 14))
         self.adjustmentBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.adjustmentBtn)
@@ -225,9 +236,12 @@ class Ui_MainWindow(object):
         self.colorCorrectionBtn.setObjectName(u"colorCorrectionBtn")
         self.colorCorrectionBtn.setEnabled(False)
         self.colorCorrectionBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.colorCorrectionBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
+"color: rgb(28, 28, 28);")
         icon2 = QIcon()
         icon2.addFile(u"../Image_editor/Icons/sliders-h-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.colorCorrectionBtn.setIcon(icon2)
+        self.colorCorrectionBtn.setIconSize(QSize(14, 14))
         self.colorCorrectionBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.colorCorrectionBtn)
@@ -236,10 +250,12 @@ class Ui_MainWindow(object):
         self.HueSatBtn.setObjectName(u"HueSatBtn")
         self.HueSatBtn.setEnabled(False)
         self.HueSatBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.HueSatBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
+"color: rgb(28, 28, 28);")
         icon3 = QIcon()
         icon3.addFile(u"../Image_editor/Icons/tint-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.HueSatBtn.setIcon(icon3)
-        self.HueSatBtn.setIconSize(QSize(14, 16))
+        self.HueSatBtn.setIconSize(QSize(14, 14))
         self.HueSatBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.HueSatBtn)
@@ -248,9 +264,12 @@ class Ui_MainWindow(object):
         self.magicToolBtn.setObjectName(u"magicToolBtn")
         self.magicToolBtn.setEnabled(False)
         self.magicToolBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.magicToolBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
+"color: rgb(28, 28, 28);")
         icon4 = QIcon()
         icon4.addFile(u"../Image_editor/Icons/magic-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.magicToolBtn.setIcon(icon4)
+        self.magicToolBtn.setIconSize(QSize(14, 14))
         self.magicToolBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.magicToolBtn)
@@ -259,9 +278,12 @@ class Ui_MainWindow(object):
         self.cropBtn.setObjectName(u"cropBtn")
         self.cropBtn.setEnabled(False)
         self.cropBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.cropBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
+"color: rgb(28, 28, 28);")
         icon5 = QIcon()
         icon5.addFile(u"../Image_editor/Icons/crop-alt-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.cropBtn.setIcon(icon5)
+        self.cropBtn.setIconSize(QSize(14, 14))
         self.cropBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.cropBtn)
@@ -270,9 +292,12 @@ class Ui_MainWindow(object):
         self.colorPickerBtn.setObjectName(u"colorPickerBtn")
         self.colorPickerBtn.setEnabled(False)
         self.colorPickerBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.colorPickerBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
+"color: rgb(28, 28, 28);")
         icon6 = QIcon()
         icon6.addFile(u"../Image_editor/Icons/palette-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.colorPickerBtn.setIcon(icon6)
+        self.colorPickerBtn.setIconSize(QSize(14, 14))
         self.colorPickerBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.colorPickerBtn)
@@ -281,9 +306,12 @@ class Ui_MainWindow(object):
         self.resizeBtn.setObjectName(u"resizeBtn")
         self.resizeBtn.setEnabled(False)
         self.resizeBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.resizeBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
+"color: rgb(28, 28, 28);")
         icon7 = QIcon()
         icon7.addFile(u"../Image_editor/Icons/compress-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.resizeBtn.setIcon(icon7)
+        self.resizeBtn.setIconSize(QSize(14, 14))
         self.resizeBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.resizeBtn)
@@ -343,7 +371,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Image Editor", None))
         self.actionOpen.setText(QCoreApplication.translate("MainWindow", u"Open", None))
 #if QT_CONFIG(shortcut)
         self.actionOpen.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+O", None))
@@ -397,7 +425,7 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(whatsthis)
         self.toolsPanel.setWhatsThis("")
 #endif // QT_CONFIG(whatsthis)
-        self.toolsPanel.setWindowTitle(QCoreApplication.translate("MainWindow", u"Tools", None))
+        self.toolsPanel.setWindowTitle(QCoreApplication.translate("MainWindow", u"ToolBar", None))
 #if QT_CONFIG(tooltip)
         self.TextBtn.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Text</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
