@@ -3,13 +3,17 @@ import cv2 as cv
 from MainWindowUi import Ui_MainWindow
 
 
-class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
-    saved, image_path = False, ''
-
+class Window(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
 
+
+class Menu(Window):
+    saved, image_path = False, ''
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         # Open Image action
         self.actionOpen.triggered.connect(self.openAndDisplayImage)
         # Save As Image action
@@ -102,10 +106,24 @@ class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
         self.toolsPanel.setCursor(QtGui.QCursor(QtGui.Qt.ArrowCursor))
 
 
+class ToolBar(Window):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.adjustmentBtn.clicked.connect(self.okNow)
+
+    def okNow(self):
+        print("Clicked")
+
+
+class App(Menu, ToolBar):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
 
-    widget = MainWindowFunc()
+    widget = App()
     widget.show()
 
     app.exec_()
