@@ -1,12 +1,6 @@
+from Window import Window
 from PySide2 import QtWidgets, QtGui
 import cv2 as cv
-from MainWindowUi import Ui_MainWindow
-
-
-class Window(QtWidgets.QMainWindow, Ui_MainWindow):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.setupUi(self)
 
 
 class Menu(Window):
@@ -104,26 +98,3 @@ class Menu(Window):
         self.colorPickerBtn.setDisabled(False)
         self.colorCorrectionBtn.setDisabled(False)
         self.toolsPanel.setCursor(QtGui.QCursor(QtGui.Qt.ArrowCursor))
-
-
-class ToolBar(Window):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.adjustmentBtn.clicked.connect(self.okNow)
-
-    def okNow(self):
-        print("Clicked")
-
-
-class App(Menu, ToolBar):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-if __name__ == "__main__":
-    app = QtWidgets.QApplication([])
-
-    widget = App()
-    widget.show()
-
-    app.exec_()
