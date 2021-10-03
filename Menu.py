@@ -1,6 +1,7 @@
 from Window import Window
 from PySide2 import QtWidgets, QtGui
 import cv2 as cv
+from ImageInfo import ImageInfo
 
 
 class Menu(Window):
@@ -24,17 +25,16 @@ class Menu(Window):
         # Opening Dialog Box for Browsing a image
         self.image_path, type = QtWidgets.QFileDialog().getOpenFileName(
             self, "Open Image", "F:\Laptop\KU Related\Major Project\Image_editor\Photos", "JPG Image Only (*.jpg)")
-
         # Enable all functions after opening the image
         if self.image_path == '':
             pass
         else:
             # Displaying image
             self.imageMainWindowLabel.setPixmap(QtGui.QPixmap(self.image_path))
-
             # Loading Image In OpenCV
-            self.img_original = cv.imread(self.image_path)
-            self.img_editing = self.img_original
+            img = cv.imread(self.image_path)
+            ImageInfo.img_original = img
+            ImageInfo.img_editing = img
 
             # TO activate all desabled buttons
             self.ActivateAllFunctions()
