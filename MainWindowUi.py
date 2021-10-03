@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'v2leqzsS.ui'
+## Form generated from reading UI file 'v3mfArlf.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -88,6 +88,12 @@ class Ui_MainWindow(object):
         self.actionNoise_Reduction.setObjectName(u"actionNoise_Reduction")
         self.actionRedo = QAction(MainWindow)
         self.actionRedo.setObjectName(u"actionRedo")
+        self.actionUndo = QAction(MainWindow)
+        self.actionUndo.setObjectName(u"actionUndo")
+        self.actionRedo_2 = QAction(MainWindow)
+        self.actionRedo_2.setObjectName(u"actionRedo_2")
+        self.actionClear_All = QAction(MainWindow)
+        self.actionClear_All.setObjectName(u"actionClear_All")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
@@ -162,6 +168,8 @@ class Ui_MainWindow(object):
         self.menuAdjustments.setObjectName(u"menuAdjustments")
         self.menuBlur = QMenu(self.menuTools)
         self.menuBlur.setObjectName(u"menuBlur")
+        self.menuEdit = QMenu(self.menubar)
+        self.menuEdit.setObjectName(u"menuEdit")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -328,6 +336,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.toolsPanel)
 
         self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuEdit.menuAction())
         self.menubar.addAction(self.menuImage_2.menuAction())
         self.menubar.addAction(self.menuTools.menuAction())
         self.menuFile.addAction(self.actionOpen)
@@ -364,6 +373,9 @@ class Ui_MainWindow(object):
         self.menuBlur.addAction(self.actionGaussian_Blur)
         self.menuBlur.addAction(self.actionBillantary_Blur)
         self.menuBlur.addAction(self.actionBilateral_Blur)
+        self.menuEdit.addAction(self.actionUndo)
+        self.menuEdit.addAction(self.actionRedo_2)
+        self.menuEdit.addAction(self.actionClear_All)
 
         self.retranslateUi(MainWindow)
 
@@ -411,6 +423,9 @@ class Ui_MainWindow(object):
         self.actionBilateral_Blur.setText(QCoreApplication.translate("MainWindow", u"Bilateral Blur", None))
         self.actionNoise_Reduction.setText(QCoreApplication.translate("MainWindow", u"Noise Reduction", None))
         self.actionRedo.setText(QCoreApplication.translate("MainWindow", u"Redo", None))
+        self.actionUndo.setText(QCoreApplication.translate("MainWindow", u"Undo", None))
+        self.actionRedo_2.setText(QCoreApplication.translate("MainWindow", u"Redo", None))
+        self.actionClear_All.setText(QCoreApplication.translate("MainWindow", u"Clear All", None))
         self.imageMainWindowLabel.setText("")
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
         self.menuImage_2.setTitle(QCoreApplication.translate("MainWindow", u"Image", None))
@@ -419,6 +434,7 @@ class Ui_MainWindow(object):
         self.menuTools.setTitle(QCoreApplication.translate("MainWindow", u"Tools", None))
         self.menuAdjustments.setTitle(QCoreApplication.translate("MainWindow", u"Adjustments", None))
         self.menuBlur.setTitle(QCoreApplication.translate("MainWindow", u"Blur", None))
+        self.menuEdit.setTitle(QCoreApplication.translate("MainWindow", u"Edit", None))
 #if QT_CONFIG(tooltip)
         self.toolsPanel.setToolTip("")
 #endif // QT_CONFIG(tooltip)
