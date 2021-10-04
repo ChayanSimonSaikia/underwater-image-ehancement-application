@@ -1,9 +1,9 @@
 from PySide2 import QtWidgets
 from ToolBar import ToolBar
-from Menu import Menu
+from Menu import *
 
 
-class App(Menu, ToolBar):
+class App(File, Edit, ToolBar):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

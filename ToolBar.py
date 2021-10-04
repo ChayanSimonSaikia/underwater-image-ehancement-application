@@ -1,8 +1,9 @@
 import cv2 as cv
 from Window import Window
-from PySide2 import QtCore, QtWidgets, QtGui
+from PySide2 import QtWidgets, QtGui
 from Tools.ui_adjustment import Ui_adjustment_dialog
 from ImageInfo import ImageInfo
+from UndoCommandAdd import UndoCommandAdd
 
 
 class ToolBar(Window):
@@ -37,30 +38,31 @@ class AdjustmentTool(QtWidgets.QDialog, Ui_adjustment_dialog):
         self.brightnessInput.setText(str(brightnessVal))
         self.contrastInout.setText(str(contrastVal))
 
-        tempImage = ImageInfo.img_editing
-        self.adjusted_img = cv.addWeighted(tempImage, (contrastVal+100)/100,
-                                           tempImage, 0, brightnessVal)
+        self.tempImage = ImageInfo.img_bgr
+        self.img_bgr = cv.addWeighted(self.tempImage, (contrastVal+100)/100,
+                                      self.tempImage, 0, brightnessVal)
 
-        # Converting to pixmap
-        height, width, channel = self.adjusted_img.shape
-        bytesPerLine = 3*width
-        self.qImage = QtGui.QImage(self.adjusted_img.data, width, height,
-                                   bytesPerLine, QtGui.QImage.Format_RGB888).rgbSwapped()
+        # Converting to pixmap And assigning
+        self.img_pixmap = ImageInfo.convert_BGR2Pixmap(self,
+                                                       self.img_bgr)
+
         # Display in main window
-        self.parent().imageMainWindowLabel.setPixmap(QtGui.QPixmap(self.qImage))
+        self.parent().imageMainWindowLabel.setPixmap(QtGui.QPixmap(self.img_pixmap))
 
     def closeWinow(self):
         # Converting to pixmap
-        height, width, channel = ImageInfo.img_editing.shape
-        bytesPerLine = 3*width
-        self.qImage2 = QtGui.QImage(ImageInfo.img_editing.data, width, height,
-                                    bytesPerLine, QtGui.QImage.Format_RGB888).rgbSwapped()
-
+        img_pixmap = ImageInfo.convert_BGR2Pixmap(self, self.tempImage)
         # Display in main window
-        self.parent().imageMainWindowLabel.setPixmap(QtGui.QPixmap(self.qImage2))
+        self.parent().imageMainWindowLabel.setPixmap(QtGui.QPixmap(img_pixmap))
+        ImageInfo.img_pixmap = img_pixmap
         self.close()
 
     def okButton(self):
+        command = UndoCommandAdd(
+            ImageInfo.img_pixmap, self.parent().imageMainWindowLabel, ImageInfo.img_bgr)
+        self.parent().undoStack.push(command)
+
         # Assigning adjusted image to image_editing variable
-        ImageInfo.img_editing = self.adjusted_img
+        ImageInfo.img_bgr = self.img_bgr
+        ImageInfo.img_pixmap = self.img_pixmap
         self.close()

@@ -2,13 +2,15 @@ from Window import Window
 from PySide2 import QtWidgets, QtGui
 import cv2 as cv
 from ImageInfo import ImageInfo
+from UndoCommandAdd import UndoCommandAdd
+""" FILE ACTION """
 
 
-class Menu(Window):
-    saved, image_path = False, ''
-
+class File(Window):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # Image Saved Or Not
+        self.saved = False
         # Open Image action
         self.actionOpen.triggered.connect(self.openAndDisplayImage)
         # Save As Image action
@@ -18,32 +20,31 @@ class Menu(Window):
         # Exit action
         self.actionExit.triggered.connect(self.exit)
 
-    """ FILE ACTION """
     # Open Image Method
 
     def openAndDisplayImage(self):
+        self.pushToUndoStack()
         # Opening Dialog Box for Browsing a image
-        self.image_path, type = QtWidgets.QFileDialog().getOpenFileName(
+        self.image, type = QtWidgets.QFileDialog().getOpenFileName(
             self, "Open Image", "F:\Laptop\KU Related\Major Project\Image_editor\Photos", "JPG Image Only (*.jpg)")
         # Enable all functions after opening the image
-        if self.image_path == '':
-            pass
-        else:
+        if self.image != '':
+            self.img_path = ImageInfo.img_path = self.image
             # Displaying image
-            self.imageMainWindowLabel.setPixmap(QtGui.QPixmap(self.image_path))
+            self.imageMainWindowLabel.setPixmap(
+                QtGui.QPixmap(ImageInfo.img_path))
             # Loading Image In OpenCV
-            img = cv.imread(self.image_path)
-            ImageInfo.img_original = img
-            ImageInfo.img_editing = img
-
+            self.img_bgr = ImageInfo.img_bgr_original = ImageInfo.img_bgr = cv.imread(
+                ImageInfo.img_path)
             # TO activate all desabled buttons
             self.ActivateAllFunctions()
+            # push to UndoStack
 
     # Save Action Method
 
     def save(self):
         if self.saved:
-            cv.imwrite(self.save_img_path, self.img_editing)
+            cv.imwrite(self.save_img_path, self.img_bgr)
         else:
             self.saveAs()
 
@@ -55,7 +56,7 @@ class Menu(Window):
         if self.save_img_path == '':
             pass
         else:
-            cv.imwrite(self.save_img_path, self.img_editing)
+            cv.imwrite(self.save_img_path, self.img_bgr)
             self.saved = True
     # Exit Action method
 
@@ -83,7 +84,12 @@ class Menu(Window):
         else:
             pass
 
+    def pushToUndoStack(self):
+        command = UndoCommandAdd(
+            ImageInfo.img_path, self.imageMainWindowLabel, ImageInfo.img_bgr)
+        self.undoStack.push(command)
     # TO activate all desabled buttons
+
     def ActivateAllFunctions(self):
         self.actionSave.setDisabled(False)
         self.actionSaveAs.setDisabled(False)
@@ -98,3 +104,16 @@ class Menu(Window):
         self.colorPickerBtn.setDisabled(False)
         self.colorCorrectionBtn.setDisabled(False)
         self.toolsPanel.setCursor(QtGui.QCursor(QtGui.Qt.ArrowCursor))
+
+
+""" Edit action"""
+
+
+class Edit(Window):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Undo action
+        self.actionUndo.triggered.connect(self.undoBtnClicked)
+
+    def undoBtnClicked(self):
+        self.undoStack.undo()
