@@ -58,11 +58,13 @@ class AdjustmentTool(QtWidgets.QDialog, Ui_adjustment_dialog):
         self.close()
 
     def okButton(self):
-        command = UndoCommandAdd(
-            ImageInfo.img_pixmap, self.parent().imageMainWindowLabel, ImageInfo.img_bgr)
-        self.parent().undoStack.push(command)
-
+        self.pushUndoCommand()
         # Assigning adjusted image to image_editing variable
         ImageInfo.img_bgr = self.img_bgr
         ImageInfo.img_pixmap = self.img_pixmap
         self.close()
+
+    def pushUndoCommand(self):
+        command = UndoCommandAdd(
+            ImageInfo.img_pixmap, self.parent().imageMainWindowLabel, ImageInfo.img_bgr)
+        self.parent().undoStack.push(command)

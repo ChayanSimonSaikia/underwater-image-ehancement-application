@@ -14,6 +14,9 @@ class UndoCommandAdd(QtWidgets.QUndoCommand):
             self.imageLabel.setPixmap(QtGui.QPixmap(self.image))
             ImageInfo.img_path = ''
         else:
-            self.imageLabel.setPixmap(QtGui.QPixmap(self.image))
-            ImageInfo.img_bgr = self.img_bgr
-            ImageInfo.img_pixmap = self.image
+            if self.image == None:
+                self.imageLabel.setPixmap(QtGui.QPixmap(ImageInfo.img_path))
+            else:
+                self.imageLabel.setPixmap(QtGui.QPixmap(self.image))
+                ImageInfo.img_bgr = self.img_bgr
+                ImageInfo.img_pixmap = self.image
