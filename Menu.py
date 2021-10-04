@@ -1,15 +1,14 @@
+from Window import Window
 from PySide2 import QtWidgets, QtGui
 import cv2 as cv
-from MainWindowUi import Ui_MainWindow
+from ImageInfo import ImageInfo
 
 
-class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
-    saved = False
+class Menu(Window):
+    saved, image_path = False, ''
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.setupUi(self)
-
         # Open Image action
         self.actionOpen.triggered.connect(self.openAndDisplayImage)
         # Save As Image action
@@ -26,20 +25,20 @@ class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
         # Opening Dialog Box for Browsing a image
         self.image_path, type = QtWidgets.QFileDialog().getOpenFileName(
             self, "Open Image", "F:\Laptop\KU Related\Major Project\Image_editor\Photos", "JPG Image Only (*.jpg)")
-
         # Enable all functions after opening the image
         if self.image_path == '':
             pass
         else:
             # Displaying image
             self.imageMainWindowLabel.setPixmap(QtGui.QPixmap(self.image_path))
-
             # Loading Image In OpenCV
-            self.img_original = cv.imread(self.image_path)
-            self.img_editing = self.img_original
+            img = cv.imread(self.image_path)
+            ImageInfo.img_original = img
+            ImageInfo.img_editing = img
 
-            self.actionSave.setDisabled(False)
-            self.actionSaveAs.setDisabled(False)
+            # TO activate all desabled buttons
+            self.ActivateAllFunctions()
+
     # Save Action Method
 
     def save(self):
@@ -61,10 +60,15 @@ class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
     # Exit Action method
 
     def exit(self):
-        if self.saved:
+        # If no image found
+        if self.image_path == '':
             self.close()
         else:
-            self.imageNotSavedMsg()
+            # If image found
+            if self.saved:
+                self.close()
+            else:
+                self.imageNotSavedMsg()
     # Show message if the image has not been saved
 
     def imageNotSavedMsg(self):
@@ -79,11 +83,18 @@ class MainWindowFunc(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             pass
 
-
-if __name__ == "__main__":
-    app = QtWidgets.QApplication([])
-
-    widget = MainWindowFunc()
-    widget.show()
-
-    app.exec_()
+    # TO activate all desabled buttons
+    def ActivateAllFunctions(self):
+        self.actionSave.setDisabled(False)
+        self.actionSaveAs.setDisabled(False)
+        self.menuImage_2.setDisabled(False)
+        self.menuTools.setDisabled(False)
+        self.adjustmentBtn.setDisabled(False)
+        self.HueSatBtn.setDisabled(False)
+        self.cropBtn.setDisabled(False)
+        self.TextBtn.setDisabled(False)
+        self.resizeBtn.setDisabled(False)
+        self.magicToolBtn.setDisabled(False)
+        self.colorPickerBtn.setDisabled(False)
+        self.colorCorrectionBtn.setDisabled(False)
+        self.toolsPanel.setCursor(QtGui.QCursor(QtGui.Qt.ArrowCursor))
