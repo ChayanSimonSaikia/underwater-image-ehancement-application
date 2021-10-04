@@ -114,6 +114,13 @@ class Edit(Window):
         super().__init__(*args, **kwargs)
         # Undo action
         self.actionUndo.triggered.connect(self.undoBtnClicked)
+        self.actionClear_All.triggered.connect(self.clearAllBtnClicked)
 
     def undoBtnClicked(self):
         self.undoStack.undo()
+
+    def clearAllBtnClicked(self):
+        self.img_pixmap = ImageInfo.convert_BGR2Pixmap(
+            self, ImageInfo.img_bgr_original)
+        self.imageMainWindowLabel.setPixmap(
+            QtGui.QPixmap(self.img_pixmap))
