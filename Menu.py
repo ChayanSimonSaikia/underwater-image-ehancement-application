@@ -2,7 +2,7 @@ from Window import Window
 from PySide2 import QtWidgets, QtGui
 import cv2 as cv
 from ImageInfo import ImageInfo
-from UndoCommandAdd import UndoCommandAdd
+
 """ FILE ACTION """
 
 
@@ -23,7 +23,6 @@ class File(Window):
     # Open Image Method
 
     def openAndDisplayImage(self):
-        self.pushToUndoStack()
         # Opening Dialog Box for Browsing a image
         self.image, type = QtWidgets.QFileDialog().getOpenFileName(
             self, "Open Image", "F:\Laptop\KU Related\Major Project\Image_editor\Photos", "JPG Image Only (*.jpg)")
@@ -84,10 +83,6 @@ class File(Window):
         else:
             pass
 
-    def pushToUndoStack(self):
-        command = UndoCommandAdd(
-            ImageInfo.img_path, self.imageMainWindowLabel, ImageInfo.img_bgr)
-        self.undoStack.push(command)
     # TO activate all desabled buttons
 
     def ActivateAllFunctions(self):
@@ -105,20 +100,7 @@ class File(Window):
         self.colorCorrectionBtn.setDisabled(False)
         self.toolsPanel.setCursor(QtGui.QCursor(QtGui.Qt.ArrowCursor))
 
-
-""" Edit action"""
-
-
-class Edit(Window):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Undo action
-        self.actionUndo.triggered.connect(self.undoBtnClicked)
-        self.actionClear_All.triggered.connect(self.clearAllBtnClicked)
-
-    def undoBtnClicked(self):
-        self.undoStack.undo()
-
+    # Clear all action
     def clearAllBtnClicked(self):
         self.img_pixmap = ImageInfo.convert_BGR2Pixmap(
             self, ImageInfo.img_bgr_original)

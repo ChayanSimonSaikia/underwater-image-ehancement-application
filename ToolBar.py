@@ -3,7 +3,6 @@ from Window import Window
 from PySide2 import QtWidgets, QtGui
 from Tools.ui_adjustment import Ui_adjustment_dialog
 from ImageInfo import ImageInfo
-from UndoCommandAdd import UndoCommandAdd
 
 
 class ToolBar(Window):
@@ -28,7 +27,9 @@ class AdjustmentTool(QtWidgets.QDialog, Ui_adjustment_dialog):
         self.cancelBtn.clicked.connect(self.closeWinow)
         self.okBtn.clicked.connect(self.okButton)
 
+        self.tempImage = ImageInfo.img_bgr
     # Slider moves
+
     def changeVal(self):
         # Get sliders value
         brightnessVal = self.brightnessSlider.value()
@@ -38,7 +39,6 @@ class AdjustmentTool(QtWidgets.QDialog, Ui_adjustment_dialog):
         self.brightnessInput.setText(str(brightnessVal))
         self.contrastInout.setText(str(contrastVal))
 
-        self.tempImage = ImageInfo.img_bgr
         self.img_bgr = cv.addWeighted(self.tempImage, (contrastVal+100)/100,
                                       self.tempImage, 0, brightnessVal)
 
@@ -58,13 +58,10 @@ class AdjustmentTool(QtWidgets.QDialog, Ui_adjustment_dialog):
         self.close()
 
     def okButton(self):
-        self.pushUndoCommand()
         # Assigning adjusted image to image_editing variable
         ImageInfo.img_bgr = self.img_bgr
         ImageInfo.img_pixmap = self.img_pixmap
         self.close()
 
-    def pushUndoCommand(self):
-        command = UndoCommandAdd(
-            ImageInfo.img_pixmap, self.parent().imageMainWindowLabel, ImageInfo.img_bgr)
-        self.parent().undoStack.push(command)
+
+class resizeTool(QtWidgets.QDialog, )

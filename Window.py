@@ -6,6 +6,3 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
-
-        # Undo Command
-        self.undoStack = QtWidgets.QUndoStack(self)
