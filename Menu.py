@@ -17,6 +17,8 @@ class File(Window):
         self.actionSaveAs.triggered.connect(self.saveAs)
         # Save Image action
         self.actionSave.triggered.connect(self.save)
+        # Clear all action
+        self.actionClear_All_Changes_2.triggered.connect(self.clearAllChanges)
         # Exit action
         self.actionExit.triggered.connect(self.exit)
 
@@ -61,7 +63,7 @@ class File(Window):
 
     def exit(self):
         # If no image found
-        if self.image_path == '':
+        if ImageInfo.img_path == '':
             self.close()
         else:
             # If image found
@@ -83,10 +85,17 @@ class File(Window):
         else:
             pass
 
+    def clearAllChanges(self):
+        new_img = ImageInfo.convert_BGR2Pixmap(
+            self, ImageInfo.img_bgr_original)
+        self.imageMainWindowLabel.setPixmap(QtGui.QPixmap(new_img))
+        ImageInfo.img_bgr = ImageInfo.img_bgr_original
+        ImageInfo.img_pixmap = new_img
     # TO activate all desabled buttons
 
     def ActivateAllFunctions(self):
         self.actionSave.setDisabled(False)
+        self.actionExit.setDisabled(False)
         self.actionSaveAs.setDisabled(False)
         self.menuImage_2.setDisabled(False)
         self.menuTools.setDisabled(False)
@@ -99,10 +108,3 @@ class File(Window):
         self.colorPickerBtn.setDisabled(False)
         self.colorCorrectionBtn.setDisabled(False)
         self.toolsPanel.setCursor(QtGui.QCursor(QtGui.Qt.ArrowCursor))
-
-    # Clear all action
-    def clearAllBtnClicked(self):
-        self.img_pixmap = ImageInfo.convert_BGR2Pixmap(
-            self, ImageInfo.img_bgr_original)
-        self.imageMainWindowLabel.setPixmap(
-            QtGui.QPixmap(self.img_pixmap))
