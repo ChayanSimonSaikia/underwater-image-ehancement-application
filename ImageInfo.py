@@ -2,9 +2,9 @@ from PySide2 import QtGui
 
 
 class ImageInfo:
-    img_bgr_original = []
+    img_bgr_original = None
     img_path = ''
-    img_bgr = []
+    img_bgr = None
     img_pixmap = None
 
     def convert_BGR2Pixmap(self, image):
