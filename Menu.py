@@ -27,7 +27,7 @@ class File(Window):
     def openAndDisplayImage(self):
         # Opening Dialog Box for Browsing a image
         self.image, type = QtWidgets.QFileDialog().getOpenFileName(
-            self, "Open Image", "F:\Laptop\KU Related\Major Project\Image_editor\Photos", "JPG Image Only (*.jpg)")
+            self, "Open Image", "F:\Laptop\KU Related\Testing\Methods - Copy\samples", "JPG Image Only (*.jpg)")
         # Enable all functions after opening the image
         if self.image != '':
             self.img_path = ImageInfo.img_path = self.image
