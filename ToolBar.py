@@ -1,4 +1,6 @@
+from json import tool
 from ImageInfo import ImageInfo
+from Tools.tool_hueAndSat import HueAndSatTool
 from Tools.tool_magicTool import MagicTool
 from Window import Window
 from PySide2 import QtGui
@@ -12,6 +14,7 @@ class ToolBar(Window):
         self.adjustmentBtn.clicked.connect(self.adjustmentClicked)
         self.resizeBtn.clicked.connect(self.resizeClicked)
         self.magicToolBtn.clicked.connect(self.magicToolClicked)
+        self.HueSatBtn.clicked.connect(self.hueAndSatClicked)
 
     # Display adjustment Window
     def adjustmentClicked(self):
@@ -38,3 +41,9 @@ class ToolBar(Window):
             ImageInfo.img_pixmap = img_pixmap
         except:
             print("Something went wrong")
+
+    # Hue And Saturation Window
+    def hueAndSatClicked(self):
+        hueAndSat_dialog = HueAndSatTool(self)
+        hueAndSat_dialog.setModal(True)
+        hueAndSat_dialog.show()
