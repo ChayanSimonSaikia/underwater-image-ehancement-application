@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-# Form generated from reading UI file 'designerkUUtzm.ui'
+## Form generated from reading UI file 'adjustmentDialogcXpYNL.ui'
 ##
-# Created by: Qt User Interface Compiler version 5.15.2
+## Created by: Qt User Interface Compiler version 5.15.2
 ##
-# WARNING! All changes made in this file will be lost when recompiling UI file!
+## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
 from PySide2.QtCore import *
@@ -39,23 +39,27 @@ class Ui_adjustment_dialog(object):
 
         self.contrastSlider = QSlider(self.frame)
         self.contrastSlider.setObjectName(u"contrastSlider")
-        self.contrastSlider.setMaximum(100)
-        self.contrastSlider.setSingleStep(0)
+        self.contrastSlider.setMinimum(-99)
+        self.contrastSlider.setMaximum(99)
+        self.contrastSlider.setSingleStep(1)
+        self.contrastSlider.setPageStep(1)
         self.contrastSlider.setValue(0)
         self.contrastSlider.setSliderPosition(0)
         self.contrastSlider.setOrientation(Qt.Horizontal)
-        self.contrastSlider.setTickPosition(QSlider.TicksBelow)
+        self.contrastSlider.setTickPosition(QSlider.NoTicks)
 
         self.gridLayout.addWidget(self.contrastSlider, 1, 1, 1, 1)
 
         self.brightnessSlider = QSlider(self.frame)
         self.brightnessSlider.setObjectName(u"brightnessSlider")
-        self.brightnessSlider.setMaximum(100)
-        self.brightnessSlider.setSingleStep(0)
+        self.brightnessSlider.setMinimum(-99)
+        self.brightnessSlider.setMaximum(99)
+        self.brightnessSlider.setSingleStep(1)
+        self.brightnessSlider.setPageStep(1)
         self.brightnessSlider.setValue(0)
         self.brightnessSlider.setSliderPosition(0)
         self.brightnessSlider.setOrientation(Qt.Horizontal)
-        self.brightnessSlider.setTickPosition(QSlider.TicksBelow)
+        self.brightnessSlider.setTickPosition(QSlider.NoTicks)
 
         self.gridLayout.addWidget(self.brightnessSlider, 0, 1, 1, 1)
 
@@ -73,23 +77,25 @@ class Ui_adjustment_dialog(object):
 
         self.gridLayout.addWidget(self.contrastInout, 1, 2, 1, 1)
 
+
         self.verticalLayout_2.addLayout(self.gridLayout)
 
-        self.widget = QWidget(adjustment_dialog)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(200, 270, 158, 25))
-        self.horizontalLayout = QHBoxLayout(self.widget)
+        self.layoutWidget = QWidget(adjustment_dialog)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(200, 270, 158, 25))
+        self.horizontalLayout = QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.okBtn = QPushButton(self.widget)
+        self.okBtn = QPushButton(self.layoutWidget)
         self.okBtn.setObjectName(u"okBtn")
 
         self.horizontalLayout.addWidget(self.okBtn)
 
-        self.cancelBtn = QPushButton(self.widget)
+        self.cancelBtn = QPushButton(self.layoutWidget)
         self.cancelBtn.setObjectName(u"cancelBtn")
 
         self.horizontalLayout.addWidget(self.cancelBtn)
+
 
         self.retranslateUi(adjustment_dialog)
 
@@ -97,18 +103,12 @@ class Ui_adjustment_dialog(object):
     # setupUi
 
     def retranslateUi(self, adjustment_dialog):
-        adjustment_dialog.setWindowTitle(QCoreApplication.translate(
-            "adjustment_dialog", u"Adjustment", None))
-        self.brightnessLabel.setText(QCoreApplication.translate(
-            "adjustment_dialog", u"Brightness", None))
-        self.contrastLabel.setText(QCoreApplication.translate(
-            "adjustment_dialog", u"Contrast", None))
-        self.brightnessInput.setText(
-            QCoreApplication.translate("adjustment_dialog", u"0", None))
-        self.contrastInout.setText(
-            QCoreApplication.translate("adjustment_dialog", u"0", None))
-        self.okBtn.setText(QCoreApplication.translate(
-            "adjustment_dialog", u"Ok", None))
-        self.cancelBtn.setText(QCoreApplication.translate(
-            "adjustment_dialog", u"Cancel", None))
+        adjustment_dialog.setWindowTitle(QCoreApplication.translate("adjustment_dialog", u"Adjustment", None))
+        self.brightnessLabel.setText(QCoreApplication.translate("adjustment_dialog", u"Brightness", None))
+        self.contrastLabel.setText(QCoreApplication.translate("adjustment_dialog", u"Contrast", None))
+        self.brightnessInput.setText(QCoreApplication.translate("adjustment_dialog", u"0", None))
+        self.contrastInout.setText(QCoreApplication.translate("adjustment_dialog", u"0", None))
+        self.okBtn.setText(QCoreApplication.translate("adjustment_dialog", u"Ok", None))
+        self.cancelBtn.setText(QCoreApplication.translate("adjustment_dialog", u"Cancel", None))
     # retranslateUi
+

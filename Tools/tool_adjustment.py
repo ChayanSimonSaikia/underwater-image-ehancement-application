@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets, QtGui
 from ImageInfo import ImageInfo
-from Tools.ui_adjustment import Ui_adjustment_dialog
+from Tools.ui_adjustmentDialog import Ui_adjustment_dialog
 import cv2 as cv
 
 

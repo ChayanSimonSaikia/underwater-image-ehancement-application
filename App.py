@@ -10,7 +10,7 @@ class App(File, ToolBar):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
-
+    print("Loading... Please wait")
     widget = App()
     widget.show()
 
