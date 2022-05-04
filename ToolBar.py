@@ -1,5 +1,6 @@
 from json import tool
 from ImageInfo import ImageInfo
+from Tools.tool_colorCorrection import ColorCorrection
 from Tools.tool_hueAndSat import HueAndSatTool
 from Tools.tool_magicTool import MagicTool
 from Window import Window
@@ -15,6 +16,7 @@ class ToolBar(Window):
         self.resizeBtn.clicked.connect(self.resizeClicked)
         self.magicToolBtn.clicked.connect(self.magicToolClicked)
         self.HueSatBtn.clicked.connect(self.hueAndSatClicked)
+        self.colorCorrectionBtn.clicked.connect(self.colorCorrectionClicked)
 
     # Display adjustment Window
     def adjustmentClicked(self):
@@ -47,3 +49,9 @@ class ToolBar(Window):
         hueAndSat_dialog = HueAndSatTool(self)
         hueAndSat_dialog.setModal(True)
         hueAndSat_dialog.show()
+
+    # Hue And Saturation Window
+    def colorCorrectionClicked(self):
+        colorCorrecton_dialog = ColorCorrection(self)
+        colorCorrecton_dialog.setModal(True)
+        colorCorrecton_dialog.show()
