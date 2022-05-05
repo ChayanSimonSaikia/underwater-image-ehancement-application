@@ -1,4 +1,5 @@
 from PySide2 import QtWidgets, QtGui
+from matplotlib.pyplot import stem
 from ImageInfo import ImageInfo
 from Tools.ui_hueAndSatDialog import Ui_hueAndSat_dialog
 import cv2 as cv
@@ -15,25 +16,29 @@ class HueAndSatTool(QtWidgets.QDialog, Ui_hueAndSat_dialog):
         self.cancelBtn.clicked.connect(self.closeWinow)
         self.okBtn.clicked.connect(self.okButton)
 
-        self.tempImage = ImageInfo.img_bgr
+        self.hsv = cv.cvtColor(ImageInfo.img_bgr, cv.COLOR_BGR2HSV)
+        self.h, self.s, self.v = cv.split(self.hsv)
+        self.sNew = []
+        self.hNew = []
     # Slider moves
 
     def changeHue(self):
         # Get sliders value
         hueVal = self.hueSlider.value()
-
         # Display in lineedit
         self.hueInput.setText(str(hueVal))
 
         # Operation
-        hsv = cv.cvtColor(self.tempImage, cv.COLOR_BGR2HSV)
-        h, s, v = cv.split(hsv)
+        hTemp = (self.h.astype("float32"))*((hueVal+100)/100)
 
-        h = (h.astype("float32"))*((hueVal+100)/100)
+        hTemp = np.clip(hTemp, 0, 255).astype("uint8")
 
-        h = np.clip(h, 0, 255).astype("uint8")
+        self.hNew = hTemp
 
-        merged = cv.merge([h, s, v])
+        if len(self.sNew) == 0:
+            merged = cv.merge([hTemp, self.s, self.v])
+        else:
+            merged = cv.merge([hTemp, self.sNew, self.v])
 
         self.img_bgr = cv.cvtColor(merged, cv.COLOR_HSV2BGR)
 
@@ -52,19 +57,22 @@ class HueAndSatTool(QtWidgets.QDialog, Ui_hueAndSat_dialog):
         self.satInput.setText(str(satVal))
 
         # Operation
-        hsv = cv.cvtColor(self.tempImage, cv.COLOR_BGR2HSV)
-        h, s, v = cv.split(hsv)
 
         if satVal == 0:
-            s = (s.astype("float32"))*1
+            sTemp = (self.s.astype("float32"))*1
         elif satVal > 0:
-            s = (s.astype("float32"))*((satVal+100)/100)
+            sTemp = (self.s.astype("float32"))*((satVal+100)/100)
         else:
-            s = (s.astype("float32"))*((satVal+100)/100)
+            sTemp = (self.s.astype("float32"))*((satVal+100)/100)
 
-        s = np.clip(s, 0, 255).astype("uint8")
+        sTemp = np.clip(sTemp, 0, 255).astype("uint8")
 
-        merged = cv.merge([h, s, v])
+        self.sNew = sTemp
+
+        if len(self.hNew) == 0:
+            merged = cv.merge([self.h, sTemp, self.v])
+        else:
+            merged = cv.merge([self.hNew, sTemp, self.v])
 
         self.img_bgr = cv.cvtColor(merged, cv.COLOR_HSV2BGR)
 
@@ -77,7 +85,7 @@ class HueAndSatTool(QtWidgets.QDialog, Ui_hueAndSat_dialog):
 
     def closeWinow(self):
         # Converting to pixmap
-        img_pixmap = ImageInfo.convert_BGR2Pixmap(self, self.tempImage)
+        img_pixmap = ImageInfo.convert_BGR2Pixmap(self, ImageInfo.img_bgr)
         # Display in main window
         self.parent().imageMainWindowLabel.setPixmap(QtGui.QPixmap(img_pixmap))
         ImageInfo.img_pixmap = img_pixmap
