@@ -2,7 +2,7 @@ from Window import Window
 from PySide2 import QtWidgets, QtGui
 import cv2 as cv
 from ImageInfo import ImageInfo
-
+import imutils
 """ FILE ACTION """
 
 
@@ -31,12 +31,16 @@ class File(Window):
         # Enable all functions after opening the image
         if self.image != '':
             self.img_path = ImageInfo.img_path = self.image
+            # Loading Image In OpenCV
+            self.img_bgr = ImageInfo.img_bgr_original = ImageInfo.img_bgr = imutils.resize(cv.imread(
+                ImageInfo.img_path), height=750, inter=cv.INTER_CUBIC)
+            # Converting to pixmap And assigning
+            self.img_pixmap = ImageInfo.convert_BGR2Pixmap(self,
+                                                           self.img_bgr)
+
             # Displaying image
             self.imageMainWindowLabel.setPixmap(
-                QtGui.QPixmap(ImageInfo.img_path))
-            # Loading Image In OpenCV
-            self.img_bgr = ImageInfo.img_bgr_original = ImageInfo.img_bgr = cv.imread(
-                ImageInfo.img_path)
+                QtGui.QPixmap(self.img_pixmap))
             # TO activate all desabled buttons
             self.ActivateAllFunctions()
             # push to UndoStack

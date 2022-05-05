@@ -126,9 +126,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QHBoxLayout(self.scrollAreaWidgetContents_2)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.imageMainWindowLabel = QLabel(self.scrollAreaWidgetContents_2)
-        self.imageMainWindowLabel.setScaledContents(True)
-        self.imageMainWindowLabel.setSizePolicy(
-            QSizePolicy.Ignored, QSizePolicy.Ignored)
+        # self.imageMainWindowLabel.setScaledContents(True)
+        # self.imageMainWindowLabel.setSizePolicy(
+        #     QSizePolicy.Ignored, QSizePolicy.Ignored)
         self.imageMainWindowLabel.setObjectName(u"imageMainWindowLabel")
         self.imageMainWindowLabel.setMouseTracking(True)
         self.imageMainWindowLabel.setFrameShadow(QFrame.Plain)
