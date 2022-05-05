@@ -16,7 +16,8 @@ class ColorCorrection(QtWidgets.QDialog, Ui_colorCorrection_dialog):
         self.cancelBtn.clicked.connect(self.closeWinow)
         self.okBtn.clicked.connect(self.okButton)
 
-        self.tempImage = ImageInfo.img_bgr
+        self.b, self.g, self.r = cv.split(ImageInfo.img_bgr)
+        self.bNew, self.gNew, self.rNew = [[], [], []]
     # Slider moves
 
     def changeR(self):
@@ -27,19 +28,21 @@ class ColorCorrection(QtWidgets.QDialog, Ui_colorCorrection_dialog):
         self.rInput.setText(str(rVal))
 
         # Operation
-        b, g, r = cv.split(self.tempImage)
-
-        r = (r.astype("float32"))*((rVal+100)/100)
+        r = (self.r.astype("float32"))*((rVal+100)/100)
         r = np.clip(r, 0, 255).astype("uint8")
 
-        self.img_bgr = cv.merge([b, g, r])
+        self.rNew = r
 
-        # Converting to pixmap And assigning
-        self.img_pixmap = ImageInfo.convert_BGR2Pixmap(self,
-                                                       self.img_bgr)
+        if len(self.bNew) == 0 and len(self.gNew) == 0:
+            self.img_bgr = cv.merge([self.b, self.g, r])
+        elif len(self.bNew) == 0:
+            self.img_bgr = cv.merge([self.b, self.gNew, r])
+        elif len(self.gNew) == 0:
+            self.img_bgr = cv.merge([self.bNew, self.g, r])
+        else:
+            self.img_bgr = cv.merge([self.bNew, self.gNew, r])
 
-        # Display in main window
-        self.parent().imageMainWindowLabel.setPixmap(QtGui.QPixmap(self.img_pixmap))
+        self.displayImage()
 
     def changeB(self):
         # Get sliders value
@@ -49,19 +52,21 @@ class ColorCorrection(QtWidgets.QDialog, Ui_colorCorrection_dialog):
         self.bInput.setText(str(bVal))
 
         # Operation
-        b, g, r = cv.split(self.tempImage)
-
-        b = (b.astype("float32"))*((bVal+100)/100)
+        b = (self.b.astype("float32"))*((bVal+100)/100)
         b = np.clip(b, 0, 255).astype("uint8")
 
-        self.img_bgr = cv.merge([b, g, r])
+        self.bNew = b
 
-        # Converting to pixmap And assigning
-        self.img_pixmap = ImageInfo.convert_BGR2Pixmap(self,
-                                                       self.img_bgr)
+        if len(self.rNew) == 0 and len(self.gNew) == 0:
+            self.img_bgr = cv.merge([b, self.g, self.r])
+        elif len(self.rNew) == 0:
+            self.img_bgr = cv.merge([b, self.gNew, self.r])
+        elif len(self.gNew) == 0:
+            self.img_bgr = cv.merge([b, self.g, self.rNew])
+        else:
+            self.img_bgr = cv.merge([b, self.gNew, self.rNew])
 
-        # Display in main window
-        self.parent().imageMainWindowLabel.setPixmap(QtGui.QPixmap(self.img_pixmap))
+        self.displayImage()
 
     def changeG(self):
         # Get sliders value
@@ -71,13 +76,23 @@ class ColorCorrection(QtWidgets.QDialog, Ui_colorCorrection_dialog):
         self.gInout.setText(str(gVal))
 
         # Operation
-        b, g, r = cv.split(self.tempImage)
-
-        g = (g.astype("float32"))*((gVal+100)/100)
+        g = (self.g.astype("float32"))*((gVal+100)/100)
         g = np.clip(g, 0, 255).astype("uint8")
 
-        self.img_bgr = cv.merge([b, g, r])
+        self.gNew = g
 
+        if len(self.bNew) == 0 and len(self.rNew) == 0:
+            self.img_bgr = cv.merge([self.b, g, self.r])
+        elif len(self.bNew) == 0:
+            self.img_bgr = cv.merge([self.b, g, self.rNew])
+        elif len(self.rNew) == 0:
+            self.img_bgr = cv.merge([self.bNew, g, self.r])
+        else:
+            self.img_bgr = cv.merge([self.bNew, g, self.rNew])
+
+        self.displayImage()
+
+    def displayImage(self):
         # Converting to pixmap And assigning
         self.img_pixmap = ImageInfo.convert_BGR2Pixmap(self,
                                                        self.img_bgr)
@@ -87,7 +102,7 @@ class ColorCorrection(QtWidgets.QDialog, Ui_colorCorrection_dialog):
 
     def closeWinow(self):
         # Converting to pixmap
-        img_pixmap = ImageInfo.convert_BGR2Pixmap(self, self.tempImage)
+        img_pixmap = ImageInfo.convert_BGR2Pixmap(self, ImageInfo.img_bgr)
         # Display in main window
         self.parent().imageMainWindowLabel.setPixmap(QtGui.QPixmap(img_pixmap))
         ImageInfo.img_pixmap = img_pixmap
