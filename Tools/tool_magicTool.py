@@ -11,7 +11,7 @@ class MagicTool:
         out = self.simplest_cb(img, 1)
         out = self.applyClahe(out)
 
-        return cv2.fastNlMeansDenoisingColored(out, None, 10, 10, 3, 7)
+        return cv2.fastNlMeansDenoisingColored(out, None, 7, 7, 2, 4)
 
     def applyClahe(self, img):
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)

@@ -33,7 +33,7 @@ class File(Window):
             self.img_path = ImageInfo.img_path = self.image
             # Loading Image In OpenCV
             self.img_bgr = ImageInfo.img_bgr_original = ImageInfo.img_bgr = imutils.resize(cv.imread(
-                ImageInfo.img_path), height=750, inter=cv.INTER_CUBIC)
+                ImageInfo.img_path), height=700, inter=cv.INTER_CUBIC)
             # Converting to pixmap And assigning
             self.img_pixmap = ImageInfo.convert_BGR2Pixmap(self,
                                                            self.img_bgr)
