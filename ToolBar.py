@@ -3,6 +3,7 @@ from ImageInfo import ImageInfo
 from Tools.tool_colorCorrection import ColorCorrection
 from Tools.tool_hueAndSat import HueAndSatTool
 from Tools.tool_magicTool import MagicTool
+from Tools.tool_rotate import Rotate
 from Window import Window
 from PySide2 import QtGui
 from Tools import tool_adjustment, tool_resize
@@ -17,6 +18,7 @@ class ToolBar(Window):
         self.magicToolBtn.clicked.connect(self.magicToolClicked)
         self.HueSatBtn.clicked.connect(self.hueAndSatClicked)
         self.colorCorrectionBtn.clicked.connect(self.colorCorrectionClicked)
+        self.rotateBtn.clicked.connect(self.rotateClicked)
 
     # Display adjustment Window
     def adjustmentClicked(self):
@@ -55,3 +57,16 @@ class ToolBar(Window):
         colorCorrecton_dialog = ColorCorrection(self)
         colorCorrecton_dialog.setModal(True)
         colorCorrecton_dialog.show()
+
+    # Rotate
+    def rotateClicked(self):
+        rotatedImg = Rotate().rotate()
+        try:
+            img_pixmap = ImageInfo.convert_BGR2Pixmap(self, rotatedImg)
+            self.imageMainWindowLabel.setPixmap(
+                QtGui.QPixmap(img_pixmap))
+            # Update image
+            ImageInfo.img_bgr = rotatedImg
+            ImageInfo.img_pixmap = img_pixmap
+        except:
+            print("Something went wrong")
