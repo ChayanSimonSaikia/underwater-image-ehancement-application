@@ -21,6 +21,7 @@ class resizeTool(QtWidgets.QDialog, Ui_Resize):
         self.lockCheck_2.setChecked(True)
         # bACKUP iMAGE
         self.tempImage = ImageInfo.img_bgr
+        self.img_resized = []
 
     def heightValChanged(self):
         # lock is true or false
@@ -68,6 +69,9 @@ class resizeTool(QtWidgets.QDialog, Ui_Resize):
             self.lockUnchecked()
 
     def okClicked(self):
+        if len(self.img_resized) == 0:
+            return self.close()
+
         ImageInfo.img_bgr = self.img_resized
         ImageInfo.img_pixmap = self.img_resized_pixmap
         self.close()

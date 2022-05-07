@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'adjustmentDialogcXpYNL.ui'
+## Form generated from reading UI file 'adjustmentDialogKtVwgz.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,10 +17,17 @@ class Ui_adjustment_dialog(object):
     def setupUi(self, adjustment_dialog):
         if not adjustment_dialog.objectName():
             adjustment_dialog.setObjectName(u"adjustment_dialog")
-        adjustment_dialog.resize(384, 300)
+        adjustment_dialog.resize(326, 131)
+        font = QFont()
+        font.setFamily(u"Roboto")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        adjustment_dialog.setFont(font)
+        self.verticalLayout = QVBoxLayout(adjustment_dialog)
+        self.verticalLayout.setObjectName(u"verticalLayout")
         self.frame = QFrame(adjustment_dialog)
         self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(9, 9, 361, 251))
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.frame)
@@ -39,8 +46,8 @@ class Ui_adjustment_dialog(object):
 
         self.contrastSlider = QSlider(self.frame)
         self.contrastSlider.setObjectName(u"contrastSlider")
-        self.contrastSlider.setMinimum(-99)
-        self.contrastSlider.setMaximum(99)
+        self.contrastSlider.setMinimum(-50)
+        self.contrastSlider.setMaximum(50)
         self.contrastSlider.setSingleStep(1)
         self.contrastSlider.setPageStep(1)
         self.contrastSlider.setValue(0)
@@ -80,21 +87,23 @@ class Ui_adjustment_dialog(object):
 
         self.verticalLayout_2.addLayout(self.gridLayout)
 
-        self.layoutWidget = QWidget(adjustment_dialog)
-        self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(200, 270, 158, 25))
-        self.horizontalLayout = QHBoxLayout(self.layoutWidget)
+
+        self.verticalLayout.addWidget(self.frame)
+
+        self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.okBtn = QPushButton(self.layoutWidget)
+        self.okBtn = QPushButton(adjustment_dialog)
         self.okBtn.setObjectName(u"okBtn")
 
         self.horizontalLayout.addWidget(self.okBtn)
 
-        self.cancelBtn = QPushButton(self.layoutWidget)
+        self.cancelBtn = QPushButton(adjustment_dialog)
         self.cancelBtn.setObjectName(u"cancelBtn")
 
         self.horizontalLayout.addWidget(self.cancelBtn)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
 
         self.retranslateUi(adjustment_dialog)

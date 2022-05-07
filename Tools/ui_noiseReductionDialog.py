@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'noiseReductionDialogGhIGnq.ui'
+## Form generated from reading UI file 'noiseReductionDialogkIuXwk.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -18,6 +18,12 @@ class Ui_noiseReduction_dialog(object):
         if not noiseReduction_dialog.objectName():
             noiseReduction_dialog.setObjectName(u"noiseReduction_dialog")
         noiseReduction_dialog.resize(194, 92)
+        font = QFont()
+        font.setFamily(u"Roboto")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        noiseReduction_dialog.setFont(font)
         self.horizontalLayout_2 = QHBoxLayout(noiseReduction_dialog)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.verticalLayout = QVBoxLayout()

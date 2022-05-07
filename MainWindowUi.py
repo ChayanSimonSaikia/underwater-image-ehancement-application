@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'v4GZSzBm.ui'
+## Form generated from reading UI file 'v4YcnXpB.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,13 +17,13 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(722, 600)
+        MainWindow.resize(726, 587)
         font = QFont()
         font.setFamily(u"Nunito")
         MainWindow.setFont(font)
         MainWindow.setLayoutDirection(Qt.LeftToRight)
-        MainWindow.setStyleSheet(u"background-color: rgb(46, 46, 58);\n"
-"color: rgb(224, 224, 224);")
+        MainWindow.setStyleSheet(u"background-color: rgb(240, 233, 210);\n"
+"color: rgb(24, 29, 49);")
         MainWindow.setTabShape(QTabWidget.Rounded)
         MainWindow.setDockOptions(QMainWindow.AllowTabbedDocks|QMainWindow.AnimatedDocks)
         self.actionOpen = QAction(MainWindow)
@@ -117,8 +117,8 @@ class Ui_MainWindow(object):
         self.actionGaussian_Blur_2.setObjectName(u"actionGaussian_Blur_2")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.horizontalLayout = QHBoxLayout(self.centralwidget)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
         self.frame.setFrameShape(QFrame.StyledPanel)
@@ -136,7 +136,7 @@ class Ui_MainWindow(object):
         self.ImageScrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 630, 517))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 634, 504))
         self.horizontalLayout_3 = QHBoxLayout(self.scrollAreaWidgetContents_2)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.imageMainWindowLabel = QLabel(self.scrollAreaWidgetContents_2)
@@ -152,13 +152,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.ImageScrollArea)
 
 
-        self.horizontalLayout.addWidget(self.frame)
+        self.verticalLayout_2.addWidget(self.frame)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setEnabled(True)
-        self.menubar.setGeometry(QRect(0, 0, 722, 25))
+        self.menubar.setGeometry(QRect(0, 0, 726, 25))
         self.menubar.setMinimumSize(QSize(0, 25))
         font1 = QFont()
         font1.setFamily(u"Nunito")
@@ -206,113 +206,102 @@ class Ui_MainWindow(object):
         self.toolsPanel.setFont(font2)
         self.toolsPanel.setCursor(QCursor(Qt.ForbiddenCursor))
         self.toolsPanel.setLayoutDirection(Qt.LeftToRight)
-        self.toolsPanel.setStyleSheet(u"background-color: rgb(60, 60, 75);")
+        self.toolsPanel.setStyleSheet(u"background-color: rgb(230, 221, 196);\n"
+"")
         self.toolsPanel.setInputMethodHints(Qt.ImhNone)
         self.toolsPanel.setFloating(False)
         self.toolsPanel.setFeatures(QDockWidget.DockWidgetMovable)
         self.toolsPanel.setAllowedAreas(Qt.BottomDockWidgetArea|Qt.LeftDockWidgetArea|Qt.RightDockWidgetArea)
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
-        self.gridLayoutWidget = QWidget(self.dockWidgetContents)
-        self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(10, 10, 31, 371))
-        self.verticalLayout = QVBoxLayout(self.gridLayoutWidget)
+        self.widget = QWidget(self.dockWidgetContents)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(10, 10, 31, 381))
+        self.verticalLayout = QVBoxLayout(self.widget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.adjustmentBtn = QPushButton(self.gridLayoutWidget)
+        self.adjustmentBtn = QPushButton(self.widget)
         self.adjustmentBtn.setObjectName(u"adjustmentBtn")
         self.adjustmentBtn.setEnabled(False)
         self.adjustmentBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.adjustmentBtn.setMouseTracking(False)
         self.adjustmentBtn.setAcceptDrops(False)
         self.adjustmentBtn.setToolTipDuration(-1)
-        self.adjustmentBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
-"color: rgb(28, 28, 28);")
+        self.adjustmentBtn.setStyleSheet(u"")
         self.adjustmentBtn.setInputMethodHints(Qt.ImhNone)
         icon = QIcon()
         icon.addFile(u"../Image_editor/Icons/adjust-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.adjustmentBtn.setIcon(icon)
-        self.adjustmentBtn.setIconSize(QSize(14, 14))
+        self.adjustmentBtn.setIconSize(QSize(16, 16))
         self.adjustmentBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.adjustmentBtn)
 
-        self.colorCorrectionBtn = QPushButton(self.gridLayoutWidget)
+        self.colorCorrectionBtn = QPushButton(self.widget)
         self.colorCorrectionBtn.setObjectName(u"colorCorrectionBtn")
         self.colorCorrectionBtn.setEnabled(False)
         self.colorCorrectionBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.colorCorrectionBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
-"color: rgb(28, 28, 28);")
+        self.colorCorrectionBtn.setStyleSheet(u"")
         icon1 = QIcon()
         icon1.addFile(u"../Image_editor/Icons/sliders-h-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.colorCorrectionBtn.setIcon(icon1)
-        self.colorCorrectionBtn.setIconSize(QSize(14, 14))
+        self.colorCorrectionBtn.setIconSize(QSize(16, 16))
         self.colorCorrectionBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.colorCorrectionBtn)
 
-        self.HueSatBtn = QPushButton(self.gridLayoutWidget)
+        self.HueSatBtn = QPushButton(self.widget)
         self.HueSatBtn.setObjectName(u"HueSatBtn")
         self.HueSatBtn.setEnabled(False)
         self.HueSatBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.HueSatBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
-"color: rgb(28, 28, 28);")
+        self.HueSatBtn.setStyleSheet(u"")
         icon2 = QIcon()
         icon2.addFile(u"../Image_editor/Icons/tint-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.HueSatBtn.setIcon(icon2)
-        self.HueSatBtn.setIconSize(QSize(14, 14))
+        self.HueSatBtn.setIconSize(QSize(16, 16))
         self.HueSatBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.HueSatBtn)
 
-        self.magicToolBtn = QPushButton(self.gridLayoutWidget)
+        self.magicToolBtn = QPushButton(self.widget)
         self.magicToolBtn.setObjectName(u"magicToolBtn")
         self.magicToolBtn.setEnabled(False)
         self.magicToolBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.magicToolBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
-"color: rgb(28, 28, 28);")
+        self.magicToolBtn.setStyleSheet(u"")
         icon3 = QIcon()
         icon3.addFile(u"../Image_editor/Icons/magic-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.magicToolBtn.setIcon(icon3)
-        self.magicToolBtn.setIconSize(QSize(14, 14))
+        self.magicToolBtn.setIconSize(QSize(16, 16))
         self.magicToolBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.magicToolBtn)
 
-        self.resizeBtn = QPushButton(self.gridLayoutWidget)
+        self.resizeBtn = QPushButton(self.widget)
         self.resizeBtn.setObjectName(u"resizeBtn")
         self.resizeBtn.setEnabled(False)
         self.resizeBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.resizeBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
-"color: rgb(28, 28, 28);")
+        self.resizeBtn.setStyleSheet(u"")
         icon4 = QIcon()
         icon4.addFile(u"../Image_editor/Icons/compress-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.resizeBtn.setIcon(icon4)
-        self.resizeBtn.setIconSize(QSize(14, 14))
+        self.resizeBtn.setIconSize(QSize(16, 16))
         self.resizeBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.resizeBtn)
 
-        self.rotateBtn = QPushButton(self.gridLayoutWidget)
+        self.rotateBtn = QPushButton(self.widget)
         self.rotateBtn.setObjectName(u"rotateBtn")
         self.rotateBtn.setEnabled(False)
         self.rotateBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.rotateBtn.setStyleSheet(u"selection-color: rgb(28, 28, 28);\n"
-"color: rgb(28, 28, 28);")
+        self.rotateBtn.setStyleSheet(u"color: rgb(33, 50, 94);")
         icon5 = QIcon()
         icon5.addFile(u"../Image_editor/Icons/rotate-right-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.rotateBtn.setIcon(icon5)
-        self.rotateBtn.setIconSize(QSize(14, 14))
+        self.rotateBtn.setIconSize(QSize(16, 16))
         self.rotateBtn.setFlat(True)
 
         self.verticalLayout.addWidget(self.rotateBtn)
 
-        self.colorCorrectionBtn.raise_()
-        self.HueSatBtn.raise_()
-        self.magicToolBtn.raise_()
-        self.resizeBtn.raise_()
-        self.adjustmentBtn.raise_()
-        self.rotateBtn.raise_()
         self.toolsPanel.setWidget(self.dockWidgetContents)
         MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.toolsPanel)
 

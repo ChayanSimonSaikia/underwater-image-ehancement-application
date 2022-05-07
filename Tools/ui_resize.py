@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-# Form generated from reading UI file 'resizeDialogwNBhAt.ui'
+## Form generated from reading UI file 'resizeDialogPtevXL.ui'
 ##
-# Created by: Qt User Interface Compiler version 5.15.2
+## Created by: Qt User Interface Compiler version 5.15.2
 ##
-# WARNING! All changes made in this file will be lost when recompiling UI file!
+## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
 from PySide2.QtCore import *
@@ -17,10 +17,15 @@ class Ui_Resize(object):
     def setupUi(self, Resize):
         if not Resize.objectName():
             Resize.setObjectName(u"Resize")
-        Resize.resize(262, 300)
+        Resize.resize(237, 176)
+        font = QFont()
+        font.setFamily(u"Roboto")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        Resize.setFont(font)
         icon = QIcon()
-        icon.addFile(u"../Image_editor/Icons/compress-solid.svg",
-                     QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"../Image_editor/Icons/compress-solid.svg", QSize(), QIcon.Normal, QIcon.Off)
         Resize.setWindowIcon(icon)
         self.verticalLayout_2 = QVBoxLayout(Resize)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -50,7 +55,7 @@ class Ui_Resize(object):
         self.widthVal = QSpinBox(self.frame)
         self.widthVal.setObjectName(u"widthVal")
         self.widthVal.setAlignment(Qt.AlignCenter)
-        self.widthVal.setMinimum(0)
+        self.widthVal.setMinimum(10)
         self.widthVal.setMaximum(10000)
 
         self.horizontalLayout_2.addWidget(self.widthVal)
@@ -59,6 +64,7 @@ class Ui_Resize(object):
         self.label_3.setObjectName(u"label_3")
 
         self.horizontalLayout_2.addWidget(self.label_3)
+
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
@@ -72,7 +78,7 @@ class Ui_Resize(object):
         self.heightVal = QSpinBox(self.frame)
         self.heightVal.setObjectName(u"heightVal")
         self.heightVal.setAlignment(Qt.AlignCenter)
-        self.heightVal.setMinimum(0)
+        self.heightVal.setMinimum(10)
         self.heightVal.setMaximum(10000)
 
         self.horizontalLayout.addWidget(self.heightVal)
@@ -82,7 +88,9 @@ class Ui_Resize(object):
 
         self.horizontalLayout.addWidget(self.label_4)
 
+
         self.verticalLayout.addLayout(self.horizontalLayout)
+
 
         self.verticalLayout_2.addWidget(self.frame)
 
@@ -92,17 +100,19 @@ class Ui_Resize(object):
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_2)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.cancelBtn = QPushButton(self.frame_2)
-        self.cancelBtn.setObjectName(u"cancelBtn")
-
-        self.horizontalLayout_3.addWidget(self.cancelBtn, 0, Qt.AlignBottom)
-
         self.okBtn = QPushButton(self.frame_2)
         self.okBtn.setObjectName(u"okBtn")
 
         self.horizontalLayout_3.addWidget(self.okBtn, 0, Qt.AlignBottom)
 
+        self.cancelBtn = QPushButton(self.frame_2)
+        self.cancelBtn.setObjectName(u"cancelBtn")
+
+        self.horizontalLayout_3.addWidget(self.cancelBtn, 0, Qt.AlignBottom)
+
+
         self.verticalLayout_2.addWidget(self.frame_2)
+
 
         self.retranslateUi(Resize)
 
@@ -110,19 +120,13 @@ class Ui_Resize(object):
     # setupUi
 
     def retranslateUi(self, Resize):
-        Resize.setWindowTitle(
-            QCoreApplication.translate("Resize", u"Resize", None))
-        self.lockCheck_2.setText(
-            QCoreApplication.translate("Resize", u"Lock", None))
-        self.label.setText(QCoreApplication.translate(
-            "Resize", u"Width", None))
-        self.label_3.setText(
-            QCoreApplication.translate("Resize", u"Pixels", None))
-        self.label_2.setText(
-            QCoreApplication.translate("Resize", u"Height", None))
-        self.label_4.setText(
-            QCoreApplication.translate("Resize", u"Pixels", None))
+        Resize.setWindowTitle(QCoreApplication.translate("Resize", u"Resize", None))
+        self.lockCheck_2.setText(QCoreApplication.translate("Resize", u"Lock", None))
+        self.label.setText(QCoreApplication.translate("Resize", u"Width", None))
+        self.label_3.setText(QCoreApplication.translate("Resize", u"Pixels", None))
+        self.label_2.setText(QCoreApplication.translate("Resize", u"Height", None))
+        self.label_4.setText(QCoreApplication.translate("Resize", u"Pixels", None))
         self.okBtn.setText(QCoreApplication.translate("Resize", u"OK", None))
-        self.cancelBtn.setText(
-            QCoreApplication.translate("Resize", u"Cancel", None))
+        self.cancelBtn.setText(QCoreApplication.translate("Resize", u"Cancel", None))
     # retranslateUi
+

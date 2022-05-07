@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'hueAndSatDialogSudDAi.ui'
+## Form generated from reading UI file 'hueAndSatDialogyYiqWY.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,10 +17,17 @@ class Ui_hueAndSat_dialog(object):
     def setupUi(self, hueAndSat_dialog):
         if not hueAndSat_dialog.objectName():
             hueAndSat_dialog.setObjectName(u"hueAndSat_dialog")
-        hueAndSat_dialog.resize(384, 300)
+        hueAndSat_dialog.resize(316, 137)
+        font = QFont()
+        font.setFamily(u"Roboto")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        hueAndSat_dialog.setFont(font)
+        self.verticalLayout = QVBoxLayout(hueAndSat_dialog)
+        self.verticalLayout.setObjectName(u"verticalLayout")
         self.frame = QFrame(hueAndSat_dialog)
         self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(9, 9, 361, 251))
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.frame)
@@ -81,21 +88,23 @@ class Ui_hueAndSat_dialog(object):
 
         self.verticalLayout_2.addLayout(self.gridLayout)
 
-        self.layoutWidget = QWidget(hueAndSat_dialog)
-        self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(200, 270, 158, 25))
-        self.horizontalLayout = QHBoxLayout(self.layoutWidget)
+
+        self.verticalLayout.addWidget(self.frame)
+
+        self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.okBtn = QPushButton(self.layoutWidget)
+        self.okBtn = QPushButton(hueAndSat_dialog)
         self.okBtn.setObjectName(u"okBtn")
 
         self.horizontalLayout.addWidget(self.okBtn)
 
-        self.cancelBtn = QPushButton(self.layoutWidget)
+        self.cancelBtn = QPushButton(hueAndSat_dialog)
         self.cancelBtn.setObjectName(u"cancelBtn")
 
         self.horizontalLayout.addWidget(self.cancelBtn)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
 
         self.retranslateUi(hueAndSat_dialog)
