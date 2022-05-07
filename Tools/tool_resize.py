@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets, QtGui
+from PySide2 import QtWidgets, QtGui, QtCore
 from ImageInfo import ImageInfo
 from Tools.ui_resize import Ui_Resize
 import imutils
@@ -9,6 +9,7 @@ class resizeTool(QtWidgets.QDialog, Ui_Resize):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
         # Image width and height set
         self.widthVal.setValue(ImageInfo.img_bgr.shape[1])
         self.heightVal.setValue(ImageInfo.img_bgr.shape[0])

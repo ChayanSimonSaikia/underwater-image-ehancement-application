@@ -1,3 +1,11 @@
+import cv2
+from Tools.tool_magicTool import MagicTool
+from Tools.tool_noiseReduction import NoiseReductionTool
+from Tools.tool_resize import resizeTool
+from Tools.tool_rotate import Rotate
+from Tools.tool_colorCorrection import ColorCorrection
+from Tools.tool_hueAndSat import HueAndSatTool
+from Tools.tool_adjustment import AdjustmentTool
 from Window import Window
 from PySide2 import QtWidgets, QtGui
 import cv2 as cv
@@ -101,13 +109,109 @@ class File(Window):
         self.actionSave.setDisabled(False)
         self.actionExit.setDisabled(False)
         self.actionSaveAs.setDisabled(False)
-        self.menuImage_2.setDisabled(False)
+        self.menuImage.setDisabled(False)
         self.menuTools.setDisabled(False)
         self.adjustmentBtn.setDisabled(False)
         self.HueSatBtn.setDisabled(False)
-        self.TextBtn.setDisabled(False)
         self.resizeBtn.setDisabled(False)
         self.magicToolBtn.setDisabled(False)
         self.colorCorrectionBtn.setDisabled(False)
         self.rotateBtn.setDisabled(False)
         self.toolsPanel.setCursor(QtGui.QCursor(QtGui.Qt.ArrowCursor))
+
+
+class Image(Window):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Click events
+        self.actionResize.triggered.connect(self.resizeClicked)
+        self.actionRotate_90_Clockwise.triggered.connect(
+            self.rotateClockWiseClicked)
+        self.actionRotate_90_Anti_Clockwise.triggered.connect(
+            self.rotateAntiClockWiseClicked)
+
+    # Display resize Window
+    def resizeClicked(self):
+        resize_dialog = resizeTool(self)
+        resize_dialog.setModal(True)
+        resize_dialog.show()
+
+    # Rotate 90 clockwise
+    def rotateClockWiseClicked(self):
+        rotatedImg = Rotate().rotate()
+        try:
+            img_pixmap = ImageInfo.convert_BGR2Pixmap(self, rotatedImg)
+            self.imageMainWindowLabel.setPixmap(
+                QtGui.QPixmap(img_pixmap))
+            # Update image
+            ImageInfo.img_bgr = rotatedImg
+            ImageInfo.img_pixmap = img_pixmap
+        except:
+            print("Something went wrong")
+
+    # Rotate 90 anti clockwise
+    def rotateAntiClockWiseClicked(self):
+        rotatedImg = cv2.rotate(
+            ImageInfo.img_bgr, cv2.ROTATE_90_COUNTERCLOCKWISE)
+        try:
+            img_pixmap = ImageInfo.convert_BGR2Pixmap(self, rotatedImg)
+            self.imageMainWindowLabel.setPixmap(
+                QtGui.QPixmap(img_pixmap))
+            # Update image
+            ImageInfo.img_bgr = rotatedImg
+            ImageInfo.img_pixmap = img_pixmap
+        except:
+            print("Something went wrong")
+
+
+class Tools(Window):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Adjustment Button clicked event
+        self.actionBrightness_And_Contrast.triggered.connect(
+            self.adjustmentClicked)
+        self.actionAuto_Image_Enhancement.triggered.connect(
+            self.magicToolClicked)
+        self.actionHue_And_Saturation.triggered.connect(self.hueAndSatClicked)
+        self.actionColor_Correction.triggered.connect(
+            self.colorCorrectionClicked)
+        self.actionNoise_Reduction_2.triggered.connect(
+            self.noiseReductionClicked)
+
+    # Display adjustment Window
+    def adjustmentClicked(self):
+        adjustment_dialog = AdjustmentTool(self)
+        adjustment_dialog.setModal(True)
+        adjustment_dialog.show()
+
+    # Apply image enhancement
+    def magicToolClicked(self):
+
+        img = MagicTool().runMagicTool()
+        try:
+            img_pixmap = ImageInfo.convert_BGR2Pixmap(self, img)
+            self.imageMainWindowLabel.setPixmap(
+                QtGui.QPixmap(img_pixmap))
+            # Update image
+            ImageInfo.img_bgr = img
+            ImageInfo.img_pixmap = img_pixmap
+        except:
+            print("Something went wrong")
+
+    # Hue And Saturation Window
+    def hueAndSatClicked(self):
+        hueAndSat_dialog = HueAndSatTool(self)
+        hueAndSat_dialog.setModal(True)
+        hueAndSat_dialog.show()
+
+    # Hue And Saturation Window
+    def colorCorrectionClicked(self):
+        colorCorrecton_dialog = ColorCorrection(self)
+        colorCorrecton_dialog.setModal(True)
+        colorCorrecton_dialog.show()
+
+    # Noise Reduction
+    def noiseReductionClicked(self):
+        noiseReduction_dialog = NoiseReductionTool(self)
+        noiseReduction_dialog.setModal(True)
+        noiseReduction_dialog.show()

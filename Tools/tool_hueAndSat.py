@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets, QtGui
+from PySide2 import QtWidgets, QtGui, QtCore
 from matplotlib.pyplot import stem
 from ImageInfo import ImageInfo
 from Tools.ui_hueAndSatDialog import Ui_hueAndSat_dialog
@@ -10,6 +10,7 @@ class HueAndSatTool(QtWidgets.QDialog, Ui_hueAndSat_dialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
 
         self.hueSlider.valueChanged.connect(self.changeHue)
         self.satSlider.valueChanged.connect(self.changeSat)

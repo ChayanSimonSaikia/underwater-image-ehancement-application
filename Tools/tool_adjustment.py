@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets, QtGui
+from PySide2 import QtWidgets, QtGui, QtCore
 from ImageInfo import ImageInfo
 from Tools.ui_adjustmentDialog import Ui_adjustment_dialog
 import cv2 as cv
@@ -8,6 +8,7 @@ class AdjustmentTool(QtWidgets.QDialog, Ui_adjustment_dialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
 
         self.brightnessSlider.valueChanged.connect(self.changeVal)
         self.contrastSlider.valueChanged.connect(self.changeVal)

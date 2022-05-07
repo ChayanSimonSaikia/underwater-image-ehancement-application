@@ -3,7 +3,7 @@ from ToolBar import ToolBar
 from Menu import *
 
 
-class App(File, ToolBar):
+class App(File, Image, Tools, ToolBar):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

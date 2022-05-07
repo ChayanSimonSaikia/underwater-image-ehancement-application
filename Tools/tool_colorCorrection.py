@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets, QtGui
+from PySide2 import QtWidgets, QtGui, QtCore
 from ImageInfo import ImageInfo
 from Tools.ui_colorCorrectionDialog import Ui_colorCorrection_dialog
 import cv2 as cv
@@ -9,6 +9,7 @@ class ColorCorrection(QtWidgets.QDialog, Ui_colorCorrection_dialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
 
         self.rSlider.valueChanged.connect(self.changeR)
         self.gSlider.valueChanged.connect(self.changeG)
