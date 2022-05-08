@@ -37,19 +37,19 @@ class ToolBar(Window):
     def magicToolClicked(self):
 
         img = MagicTool().runMagicTool()
-        
+
         img_pixmap = ImageInfo.convert_BGR2Pixmap(self, img)
         self.imageMainWindowLabel.setPixmap(
             QtGui.QPixmap(img_pixmap))
 
         # Push to Undo stack
-        UndoStack().push(self.img_bgr)
+        UndoStack().push(img)
         # Update image
         ImageInfo.img_bgr = img
         ImageInfo.img_pixmap = img_pixmap
-        
 
     # Hue And Saturation Window
+
     def hueAndSatClicked(self):
         hueAndSat_dialog = HueAndSatTool(self)
         hueAndSat_dialog.setModal(True)
@@ -64,16 +64,14 @@ class ToolBar(Window):
     # Rotate
     def rotateClicked(self):
         rotatedImg = Rotate().rotate()
-        try:
-            img_pixmap = ImageInfo.convert_BGR2Pixmap(self, rotatedImg)
-            self.imageMainWindowLabel.setPixmap(
-                QtGui.QPixmap(img_pixmap))
 
-            # Push to Undo stack
-            UndoStack().push(self.img_bgr)
+        img_pixmap = ImageInfo.convert_BGR2Pixmap(self, rotatedImg)
+        self.imageMainWindowLabel.setPixmap(
+            QtGui.QPixmap(img_pixmap))
 
-            # Update image
-            ImageInfo.img_bgr = rotatedImg
-            ImageInfo.img_pixmap = img_pixmap
-        except:
-            print("Something went wrong")
+        # Push to Undo stack
+        UndoStack().push(self.img_bgr)
+
+        # Update image
+        ImageInfo.img_bgr = rotatedImg
+        ImageInfo.img_pixmap = img_pixmap

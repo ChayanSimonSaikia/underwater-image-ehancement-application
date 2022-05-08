@@ -143,31 +143,28 @@ class Image(Window):
     # Rotate 90 clockwise
     def rotateClockWiseClicked(self):
         rotatedImg = Rotate().rotate()
-        try:
-            img_pixmap = ImageInfo.convert_BGR2Pixmap(self, rotatedImg)
-            self.imageMainWindowLabel.setPixmap(
-                QtGui.QPixmap(img_pixmap))
-            # Update image
-            ImageInfo.img_bgr = rotatedImg
-            ImageInfo.img_pixmap = img_pixmap
-        except:
-            print("Something went wrong")
+
+        img_pixmap = ImageInfo.convert_BGR2Pixmap(self, rotatedImg)
+        self.imageMainWindowLabel.setPixmap(
+            QtGui.QPixmap(img_pixmap))
+        # Update image
+        ImageInfo.img_bgr = rotatedImg
+        ImageInfo.img_pixmap = img_pixmap
 
     # Rotate 90 anti clockwise
     def rotateAntiClockWiseClicked(self):
         rotatedImg = cv2.rotate(
             ImageInfo.img_bgr, cv2.ROTATE_90_COUNTERCLOCKWISE)
-        try:
-            img_pixmap = ImageInfo.convert_BGR2Pixmap(self, rotatedImg)
-            self.imageMainWindowLabel.setPixmap(
-                QtGui.QPixmap(img_pixmap))
-            # Update image
-            ImageInfo.img_bgr = rotatedImg
-            ImageInfo.img_pixmap = img_pixmap
-        except:
-            print("Something went wrong")
+
+        img_pixmap = ImageInfo.convert_BGR2Pixmap(self, rotatedImg)
+        self.imageMainWindowLabel.setPixmap(
+            QtGui.QPixmap(img_pixmap))
+        # Update image
+        ImageInfo.img_bgr = rotatedImg
+        ImageInfo.img_pixmap = img_pixmap
 
     # Undo
+
     def undoClicked(self):
         UndoStack().undo()
 
@@ -200,17 +197,15 @@ class Tools(Window):
     def magicToolClicked(self):
 
         img = MagicTool().runMagicTool()
-        try:
-            img_pixmap = ImageInfo.convert_BGR2Pixmap(self, img)
-            self.imageMainWindowLabel.setPixmap(
-                QtGui.QPixmap(img_pixmap))
-            # Update image
-            ImageInfo.img_bgr = img
-            ImageInfo.img_pixmap = img_pixmap
 
-            UndoStack.push(ImageInfo.img_bgr)
-        except:
-            print("Something went wrong")
+        img_pixmap = ImageInfo.convert_BGR2Pixmap(self, img)
+        self.imageMainWindowLabel.setPixmap(
+            QtGui.QPixmap(img_pixmap))
+        # Push to Undo stack
+        UndoStack().push(img)
+        # Update image
+        ImageInfo.img_bgr = img
+        ImageInfo.img_pixmap = img_pixmap
 
     # Hue And Saturation Window
     def hueAndSatClicked(self):
