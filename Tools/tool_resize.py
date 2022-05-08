@@ -1,5 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 from ImageInfo import ImageInfo
+from Tools.helpers.store_img import StoreImage
 from Tools.ui_resize import Ui_Resize
 import imutils
 import cv2 as cv
@@ -74,6 +75,8 @@ class resizeTool(QtWidgets.QDialog, Ui_Resize):
 
         ImageInfo.img_bgr = self.img_resized
         ImageInfo.img_pixmap = self.img_resized_pixmap
+
+        StoreImage().push(ImageInfo.img_bgr)
         self.close()
 
     def closeClicked(self):

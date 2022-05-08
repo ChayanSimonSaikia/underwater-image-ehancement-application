@@ -1,4 +1,5 @@
 import cv2
+from Tools.helpers.store_img import StoreImage
 from Tools.tool_magicTool import MagicTool
 from Tools.tool_noiseReduction import NoiseReductionTool
 from Tools.tool_resize import resizeTool
@@ -117,6 +118,7 @@ class File(Window):
         self.magicToolBtn.setDisabled(False)
         self.colorCorrectionBtn.setDisabled(False)
         self.rotateBtn.setDisabled(False)
+        self.menuEdit.setDisabled(False)
         self.toolsPanel.setCursor(QtGui.QCursor(QtGui.Qt.ArrowCursor))
 
 
@@ -195,6 +197,8 @@ class Tools(Window):
             # Update image
             ImageInfo.img_bgr = img
             ImageInfo.img_pixmap = img_pixmap
+
+            StoreImage().push(ImageInfo.img_bgr)
         except:
             print("Something went wrong")
 
@@ -215,3 +219,26 @@ class Tools(Window):
         noiseReduction_dialog = NoiseReductionTool(self)
         noiseReduction_dialog.setModal(True)
         noiseReduction_dialog.show()
+
+
+class Edit(Window):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Click events
+        self.actionUndo_2.triggered.connect(self.undoClicked)
+        self.actionRedo_3.triggered.connect(
+            self.redoClicked)
+
+    def undoClicked(self):
+        StoreImage().undo()
+
+        newPixmap = ImageInfo.img_pixmap = ImageInfo.convert_BGR2Pixmap(
+            self, ImageInfo.img_bgr)
+        self.imageMainWindowLabel.setPixmap(QtGui.QPixmap(newPixmap))
+
+    def redoClicked(self):
+        StoreImage().redo()
+
+        newPixmap = ImageInfo.img_pixmap = ImageInfo.convert_BGR2Pixmap(
+            self, ImageInfo.img_bgr)
+        self.imageMainWindowLabel.setPixmap(QtGui.QPixmap(newPixmap))

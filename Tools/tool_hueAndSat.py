@@ -1,6 +1,7 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 from matplotlib.pyplot import stem
 from ImageInfo import ImageInfo
+from Tools.helpers.store_img import StoreImage
 from Tools.ui_hueAndSatDialog import Ui_hueAndSat_dialog
 import cv2 as cv
 import numpy as np
@@ -96,4 +97,6 @@ class HueAndSatTool(QtWidgets.QDialog, Ui_hueAndSat_dialog):
         # Assigning adjusted image to image_editing variable
         ImageInfo.img_bgr = self.img_bgr
         ImageInfo.img_pixmap = self.img_pixmap
+
+        StoreImage().push(ImageInfo.img_bgr)
         self.close()

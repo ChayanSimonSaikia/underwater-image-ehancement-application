@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'v4YcnXpB.ui'
+## Form generated from reading UI file 'v5gCQHkx.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -115,6 +115,11 @@ class Ui_MainWindow(object):
         self.actionNoise_Reduction_2.setObjectName(u"actionNoise_Reduction_2")
         self.actionGaussian_Blur_2 = QAction(MainWindow)
         self.actionGaussian_Blur_2.setObjectName(u"actionGaussian_Blur_2")
+        self.actionUndo_2 = QAction(MainWindow)
+        self.actionUndo_2.setObjectName(u"actionUndo_2")
+        self.actionUndo_2.setEnabled(True)
+        self.actionRedo_3 = QAction(MainWindow)
+        self.actionRedo_3.setObjectName(u"actionRedo_3")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
@@ -181,6 +186,9 @@ class Ui_MainWindow(object):
         self.menuTools = QMenu(self.menubar)
         self.menuTools.setObjectName(u"menuTools")
         self.menuTools.setEnabled(False)
+        self.menuEdit = QMenu(self.menubar)
+        self.menuEdit.setObjectName(u"menuEdit")
+        self.menuEdit.setEnabled(False)
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -214,13 +222,13 @@ class Ui_MainWindow(object):
         self.toolsPanel.setAllowedAreas(Qt.BottomDockWidgetArea|Qt.LeftDockWidgetArea|Qt.RightDockWidgetArea)
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
-        self.widget = QWidget(self.dockWidgetContents)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(10, 10, 31, 381))
-        self.verticalLayout = QVBoxLayout(self.widget)
+        self.layoutWidget = QWidget(self.dockWidgetContents)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(10, 10, 31, 381))
+        self.verticalLayout = QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.adjustmentBtn = QPushButton(self.widget)
+        self.adjustmentBtn = QPushButton(self.layoutWidget)
         self.adjustmentBtn.setObjectName(u"adjustmentBtn")
         self.adjustmentBtn.setEnabled(False)
         self.adjustmentBtn.setCursor(QCursor(Qt.PointingHandCursor))
@@ -237,7 +245,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.adjustmentBtn)
 
-        self.colorCorrectionBtn = QPushButton(self.widget)
+        self.colorCorrectionBtn = QPushButton(self.layoutWidget)
         self.colorCorrectionBtn.setObjectName(u"colorCorrectionBtn")
         self.colorCorrectionBtn.setEnabled(False)
         self.colorCorrectionBtn.setCursor(QCursor(Qt.PointingHandCursor))
@@ -250,7 +258,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.colorCorrectionBtn)
 
-        self.HueSatBtn = QPushButton(self.widget)
+        self.HueSatBtn = QPushButton(self.layoutWidget)
         self.HueSatBtn.setObjectName(u"HueSatBtn")
         self.HueSatBtn.setEnabled(False)
         self.HueSatBtn.setCursor(QCursor(Qt.PointingHandCursor))
@@ -263,7 +271,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.HueSatBtn)
 
-        self.magicToolBtn = QPushButton(self.widget)
+        self.magicToolBtn = QPushButton(self.layoutWidget)
         self.magicToolBtn.setObjectName(u"magicToolBtn")
         self.magicToolBtn.setEnabled(False)
         self.magicToolBtn.setCursor(QCursor(Qt.PointingHandCursor))
@@ -276,7 +284,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.magicToolBtn)
 
-        self.resizeBtn = QPushButton(self.widget)
+        self.resizeBtn = QPushButton(self.layoutWidget)
         self.resizeBtn.setObjectName(u"resizeBtn")
         self.resizeBtn.setEnabled(False)
         self.resizeBtn.setCursor(QCursor(Qt.PointingHandCursor))
@@ -289,7 +297,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.resizeBtn)
 
-        self.rotateBtn = QPushButton(self.widget)
+        self.rotateBtn = QPushButton(self.layoutWidget)
         self.rotateBtn.setObjectName(u"rotateBtn")
         self.rotateBtn.setEnabled(False)
         self.rotateBtn.setCursor(QCursor(Qt.PointingHandCursor))
@@ -306,6 +314,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.toolsPanel)
 
         self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuEdit.menuAction())
         self.menubar.addAction(self.menuImage.menuAction())
         self.menubar.addAction(self.menuTools.menuAction())
         self.menuFile.addAction(self.actionOpen)
@@ -325,6 +334,8 @@ class Ui_MainWindow(object):
         self.menuTools.addAction(self.actionHue_And_Saturation)
         self.menuTools.addAction(self.actionAuto_Image_Enhancement)
         self.menuTools.addAction(self.actionNoise_Reduction_2)
+        self.menuEdit.addAction(self.actionUndo_2)
+        self.menuEdit.addAction(self.actionRedo_3)
 
         self.retranslateUi(MainWindow)
 
@@ -385,10 +396,19 @@ class Ui_MainWindow(object):
         self.actionAuto_Image_Enhancement.setText(QCoreApplication.translate("MainWindow", u"Auto Image Enhancement", None))
         self.actionNoise_Reduction_2.setText(QCoreApplication.translate("MainWindow", u"Noise Reduction", None))
         self.actionGaussian_Blur_2.setText(QCoreApplication.translate("MainWindow", u"Gaussian Blur", None))
+        self.actionUndo_2.setText(QCoreApplication.translate("MainWindow", u"Undo", None))
+#if QT_CONFIG(shortcut)
+        self.actionUndo_2.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Z", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionRedo_3.setText(QCoreApplication.translate("MainWindow", u"Redo", None))
+#if QT_CONFIG(shortcut)
+        self.actionRedo_3.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+Z", None))
+#endif // QT_CONFIG(shortcut)
         self.imageMainWindowLabel.setText("")
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
         self.menuImage.setTitle(QCoreApplication.translate("MainWindow", u"Image", None))
         self.menuTools.setTitle(QCoreApplication.translate("MainWindow", u"Tools", None))
+        self.menuEdit.setTitle(QCoreApplication.translate("MainWindow", u"Edit", None))
 #if QT_CONFIG(tooltip)
         self.toolsPanel.setToolTip("")
 #endif // QT_CONFIG(tooltip)
