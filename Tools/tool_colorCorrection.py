@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 from ImageInfo import ImageInfo
-from Tools.helpers.store_img import StoreImage
+from Tools.helpers.UndoStack import UndoStack
 from Tools.ui_colorCorrectionDialog import Ui_colorCorrection_dialog
 import cv2 as cv
 import numpy as np
@@ -111,9 +111,9 @@ class ColorCorrection(QtWidgets.QDialog, Ui_colorCorrection_dialog):
         self.close()
 
     def okButton(self):
+        # Push to Undo stack
+        UndoStack().push(self.img_bgr)
         # Assigning adjusted image to image_editing variable
         ImageInfo.img_bgr = self.img_bgr
         ImageInfo.img_pixmap = self.img_pixmap
-
-        StoreImage().push(ImageInfo.img_bgr)
         self.close()

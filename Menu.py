@@ -1,5 +1,5 @@
 import cv2
-from Tools.helpers.store_img import StoreImage
+from Tools.helpers.UndoStack import UndoStack
 from Tools.tool_magicTool import MagicTool
 from Tools.tool_noiseReduction import NoiseReductionTool
 from Tools.tool_resize import resizeTool
@@ -46,7 +46,9 @@ class File(Window):
             # Converting to pixmap And assigning
             self.img_pixmap = ImageInfo.convert_BGR2Pixmap(self,
                                                            self.img_bgr)
-
+            ImageInfo.img_dump = []
+            ImageInfo.prev_index = None
+            ImageInfo.next_index = None
             # Displaying image
             self.imageMainWindowLabel.setPixmap(
                 QtGui.QPixmap(self.img_pixmap))
@@ -198,7 +200,7 @@ class Tools(Window):
             ImageInfo.img_bgr = img
             ImageInfo.img_pixmap = img_pixmap
 
-            StoreImage().push(ImageInfo.img_bgr)
+            UndoStack.push(ImageInfo.img_bgr)
         except:
             print("Something went wrong")
 
@@ -225,19 +227,20 @@ class Edit(Window):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Click events
+        self.undoStack = UndoStack()
         self.actionUndo_2.triggered.connect(self.undoClicked)
         self.actionRedo_3.triggered.connect(
             self.redoClicked)
 
     def undoClicked(self):
-        StoreImage().undo()
+        UndoStack().undo()
 
         newPixmap = ImageInfo.img_pixmap = ImageInfo.convert_BGR2Pixmap(
             self, ImageInfo.img_bgr)
         self.imageMainWindowLabel.setPixmap(QtGui.QPixmap(newPixmap))
 
     def redoClicked(self):
-        StoreImage().redo()
+        UndoStack().redo()
 
         newPixmap = ImageInfo.img_pixmap = ImageInfo.convert_BGR2Pixmap(
             self, ImageInfo.img_bgr)

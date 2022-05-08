@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 from ImageInfo import ImageInfo
-from Tools.helpers.store_img import StoreImage
+from Tools.helpers.UndoStack import UndoStack
 from Tools.ui_adjustmentDialog import Ui_adjustment_dialog
 import cv2 as cv
 
@@ -48,7 +48,7 @@ class AdjustmentTool(QtWidgets.QDialog, Ui_adjustment_dialog):
 
     def okButton(self):
         # Push to Undo stack
-        StoreImage().push(ImageInfo.img_bgr)
+        UndoStack().push(self.img_bgr)
         # Assigning adjusted image to image_editing variable
         ImageInfo.img_bgr = self.img_bgr
         ImageInfo.img_pixmap = self.img_pixmap

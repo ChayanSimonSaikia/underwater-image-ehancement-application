@@ -2,6 +2,7 @@ from PySide2 import QtWidgets, QtGui, QtCore
 import cv2
 from ImageInfo import ImageInfo
 import cv2 as cv
+from Tools.helpers.UndoStack import UndoStack
 from Tools.ui_noiseReductionDialog import Ui_noiseReduction_dialog
 
 
@@ -31,6 +32,9 @@ class NoiseReductionTool(QtWidgets.QDialog, Ui_noiseReduction_dialog):
             QtGui.QPixmap(self.img_pixmap))
 
     def okClicked(self):
+        # Push to Undo stack
+        UndoStack().push(self.img_bgr)
+
         ImageInfo.img_bgr = self.self.newImg
         ImageInfo.img_pixmap = self.img_pixmap
         self.close()

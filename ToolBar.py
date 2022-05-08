@@ -1,5 +1,6 @@
 from json import tool
 from ImageInfo import ImageInfo
+from Tools.helpers.UndoStack import UndoStack
 from Tools.tool_colorCorrection import ColorCorrection
 from Tools.tool_hueAndSat import HueAndSatTool
 from Tools.tool_magicTool import MagicTool
@@ -40,6 +41,9 @@ class ToolBar(Window):
             img_pixmap = ImageInfo.convert_BGR2Pixmap(self, img)
             self.imageMainWindowLabel.setPixmap(
                 QtGui.QPixmap(img_pixmap))
+
+            # Push to Undo stack
+            UndoStack().push(self.img_bgr)
             # Update image
             ImageInfo.img_bgr = img
             ImageInfo.img_pixmap = img_pixmap
@@ -65,6 +69,10 @@ class ToolBar(Window):
             img_pixmap = ImageInfo.convert_BGR2Pixmap(self, rotatedImg)
             self.imageMainWindowLabel.setPixmap(
                 QtGui.QPixmap(img_pixmap))
+
+            # Push to Undo stack
+            UndoStack().push(self.img_bgr)
+
             # Update image
             ImageInfo.img_bgr = rotatedImg
             ImageInfo.img_pixmap = img_pixmap
