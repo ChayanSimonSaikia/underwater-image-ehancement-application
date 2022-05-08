@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 from ImageInfo import ImageInfo
-from Tools.helpers.UndoStack import UndoStack
+from UndoStack import UndoStack
 from Tools.ui_resize import Ui_Resize
 import imutils
 import cv2 as cv
@@ -73,7 +73,7 @@ class resizeTool(QtWidgets.QDialog, Ui_Resize):
         if len(self.img_resized) == 0:
             return self.close()
         # Push to Undo stack
-        UndoStack().push(self.img_bgr)
+        UndoStack().push(self.img_resized)
 
         ImageInfo.img_bgr = self.img_resized
         ImageInfo.img_pixmap = self.img_resized_pixmap

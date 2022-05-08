@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 from ImageInfo import ImageInfo
-from Tools.helpers.UndoStack import UndoStack
+from UndoStack import UndoStack
 from Tools.ui_colorCorrectionDialog import Ui_colorCorrection_dialog
 import cv2 as cv
 import numpy as np

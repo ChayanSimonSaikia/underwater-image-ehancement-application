@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 from ImageInfo import ImageInfo
-from Tools.helpers.UndoStack import UndoStack
+from UndoStack import UndoStack
 from Tools.ui_adjustmentDialog import Ui_adjustment_dialog
 import cv2 as cv
 

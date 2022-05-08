@@ -1,10 +1,10 @@
 from json import tool
 from ImageInfo import ImageInfo
-from Tools.helpers.UndoStack import UndoStack
+from UndoStack import UndoStack
 from Tools.tool_colorCorrection import ColorCorrection
 from Tools.tool_hueAndSat import HueAndSatTool
 from Tools.tool_magicTool import MagicTool
-from Tools.tool_rotate import Rotate
+from tool_rotate import Rotate
 from Window import Window
 from PySide2 import QtGui
 from Tools import tool_adjustment, tool_resize
@@ -37,18 +37,17 @@ class ToolBar(Window):
     def magicToolClicked(self):
 
         img = MagicTool().runMagicTool()
-        try:
-            img_pixmap = ImageInfo.convert_BGR2Pixmap(self, img)
-            self.imageMainWindowLabel.setPixmap(
-                QtGui.QPixmap(img_pixmap))
+        
+        img_pixmap = ImageInfo.convert_BGR2Pixmap(self, img)
+        self.imageMainWindowLabel.setPixmap(
+            QtGui.QPixmap(img_pixmap))
 
-            # Push to Undo stack
-            UndoStack().push(self.img_bgr)
-            # Update image
-            ImageInfo.img_bgr = img
-            ImageInfo.img_pixmap = img_pixmap
-        except:
-            print("Something went wrong")
+        # Push to Undo stack
+        UndoStack().push(self.img_bgr)
+        # Update image
+        ImageInfo.img_bgr = img
+        ImageInfo.img_pixmap = img_pixmap
+        
 
     # Hue And Saturation Window
     def hueAndSatClicked(self):

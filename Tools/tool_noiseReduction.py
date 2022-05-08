@@ -2,7 +2,7 @@ from PySide2 import QtWidgets, QtGui, QtCore
 import cv2
 from ImageInfo import ImageInfo
 import cv2 as cv
-from Tools.helpers.UndoStack import UndoStack
+from UndoStack import UndoStack
 from Tools.ui_noiseReductionDialog import Ui_noiseReduction_dialog
 
 

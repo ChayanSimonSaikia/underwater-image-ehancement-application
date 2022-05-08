@@ -8,7 +8,6 @@ class ImageInfo:
     img_pixmap = None
     img_dump = []
     prev_index = None
-    next_index = None
 
     def convert_BGR2Pixmap(self, image):
         # Converting to pixmap

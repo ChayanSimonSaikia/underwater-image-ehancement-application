@@ -1,9 +1,9 @@
 import cv2
-from Tools.helpers.UndoStack import UndoStack
+from UndoStack import UndoStack
 from Tools.tool_magicTool import MagicTool
 from Tools.tool_noiseReduction import NoiseReductionTool
 from Tools.tool_resize import resizeTool
-from Tools.tool_rotate import Rotate
+from tool_rotate import Rotate
 from Tools.tool_colorCorrection import ColorCorrection
 from Tools.tool_hueAndSat import HueAndSatTool
 from Tools.tool_adjustment import AdjustmentTool
@@ -48,7 +48,7 @@ class File(Window):
                                                            self.img_bgr)
             ImageInfo.img_dump = []
             ImageInfo.prev_index = None
-            ImageInfo.next_index = None
+
             # Displaying image
             self.imageMainWindowLabel.setPixmap(
                 QtGui.QPixmap(self.img_pixmap))
@@ -120,7 +120,6 @@ class File(Window):
         self.magicToolBtn.setDisabled(False)
         self.colorCorrectionBtn.setDisabled(False)
         self.rotateBtn.setDisabled(False)
-        self.menuEdit.setDisabled(False)
         self.toolsPanel.setCursor(QtGui.QCursor(QtGui.Qt.ArrowCursor))
 
 
@@ -133,6 +132,7 @@ class Image(Window):
             self.rotateClockWiseClicked)
         self.actionRotate_90_Anti_Clockwise.triggered.connect(
             self.rotateAntiClockWiseClicked)
+        self.actionUndo_3.triggered.connect(self.undoClicked)
 
     # Display resize Window
     def resizeClicked(self):
@@ -166,6 +166,14 @@ class Image(Window):
             ImageInfo.img_pixmap = img_pixmap
         except:
             print("Something went wrong")
+
+    # Undo
+    def undoClicked(self):
+        UndoStack().undo()
+
+        newPixmap = ImageInfo.img_pixmap = ImageInfo.convert_BGR2Pixmap(
+            self, ImageInfo.img_bgr)
+        self.imageMainWindowLabel.setPixmap(QtGui.QPixmap(newPixmap))
 
 
 class Tools(Window):
@@ -221,27 +229,3 @@ class Tools(Window):
         noiseReduction_dialog = NoiseReductionTool(self)
         noiseReduction_dialog.setModal(True)
         noiseReduction_dialog.show()
-
-
-class Edit(Window):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Click events
-        self.undoStack = UndoStack()
-        self.actionUndo_2.triggered.connect(self.undoClicked)
-        self.actionRedo_3.triggered.connect(
-            self.redoClicked)
-
-    def undoClicked(self):
-        UndoStack().undo()
-
-        newPixmap = ImageInfo.img_pixmap = ImageInfo.convert_BGR2Pixmap(
-            self, ImageInfo.img_bgr)
-        self.imageMainWindowLabel.setPixmap(QtGui.QPixmap(newPixmap))
-
-    def redoClicked(self):
-        UndoStack().redo()
-
-        newPixmap = ImageInfo.img_pixmap = ImageInfo.convert_BGR2Pixmap(
-            self, ImageInfo.img_bgr)
-        self.imageMainWindowLabel.setPixmap(QtGui.QPixmap(newPixmap))
