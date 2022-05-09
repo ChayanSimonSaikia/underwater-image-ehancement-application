@@ -3,7 +3,7 @@ from UndoStack import UndoStack
 from Tools.tool_magicTool import MagicTool
 from Tools.tool_noiseReduction import NoiseReductionTool
 from Tools.tool_resize import resizeTool
-from tool_rotate import Rotate
+from Tools.tool_rotate import Rotate
 from Tools.tool_colorCorrection import ColorCorrection
 from Tools.tool_hueAndSat import HueAndSatTool
 from Tools.tool_adjustment import AdjustmentTool

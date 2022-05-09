@@ -4,7 +4,7 @@ from UndoStack import UndoStack
 from Tools.tool_colorCorrection import ColorCorrection
 from Tools.tool_hueAndSat import HueAndSatTool
 from Tools.tool_magicTool import MagicTool
-from tool_rotate import Rotate
+from Tools.tool_rotate import Rotate
 from Window import Window
 from PySide2 import QtGui
 from Tools import tool_adjustment, tool_resize
