@@ -33,9 +33,9 @@ class NoiseReductionTool(QtWidgets.QDialog, Ui_noiseReduction_dialog):
 
     def okClicked(self):
         # Push to Undo stack
-        UndoStack().push(self.img_bgr)
+        UndoStack().push(self.newImg)
 
-        ImageInfo.img_bgr = self.self.newImg
+        ImageInfo.img_bgr = self.newImg
         ImageInfo.img_pixmap = self.img_pixmap
         self.close()
 
