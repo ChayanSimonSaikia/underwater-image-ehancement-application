@@ -60,7 +60,7 @@ class File(Window):
 
     def save(self):
         if self.saved:
-            cv.imwrite(self.save_img_path, self.img_bgr)
+            cv.imwrite(self.save_img_path, ImageInfo.img_bgr)
         else:
             self.saveAs()
 
@@ -72,7 +72,7 @@ class File(Window):
         if self.save_img_path == '':
             pass
         else:
-            cv.imwrite(self.save_img_path, self.img_bgr)
+            cv.imwrite(self.save_img_path, ImageInfo.img_bgr)
             self.saved = True
     # Exit Action method
 
